@@ -1,0 +1,25 @@
+/* here you can adjust the style settings for the extcal module */
+.extcal {
+        padding: 0px;
+        margin: 0px;
+}
+.extcal-entry {
+        padding: 0px;
+        margin: 0px;
+}
+.extcal-date {
+        padding: 0px;
+        margin: 0px;
+}
+.extcal-title {
+        padding: 0px;
+        margin: 0px;
+}
+.extcal-location {
+        padding: 0px;
+        margin: 0px;
+}
+.extcal-description {
+        padding: 0px;
+        margin: 0px;
+}

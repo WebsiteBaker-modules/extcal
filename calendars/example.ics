@@ -1,0 +1,28 @@
+BEGIN:VCALENDAR
+PRODID:-//Mozilla.org/NONSGML Mozilla Calendar V1.1//EN
+VERSION:2.0
+BEGIN:VEVENT
+CREATED:20150213T065530Z
+LAST-MODIFIED:20150213T065819Z
+DTSTAMP:20150213T065819Z
+UID:96d6da2e-2b74-437d-8ebe-c7e8a4f885e7
+SUMMARY:Check for updates
+RRULE:FREQ=MONTHLY
+X-MOZ-LASTACK:20150213T065819Z
+DTSTART;VALUE=DATE:20150201
+DTEND;VALUE=DATE:20150202
+TRANSP:TRANSPARENT
+LOCATION:http://forum.websitebaker.org/index.php/topic,28493.0.html
+DESCRIPTION:this is an example calendar entry which appears every month an
+ d reminds you to check if there are any updates for your WebsiteBaker inst
+ allation and the modules you are using
+X-MOZ-GENERATION:1
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER;VALUE=DURATION:PT0S
+DESCRIPTION:Mozilla Standardbeschreibung
+END:VALARM
+END:VEVENT
+END:VCALENDAR
+
+
