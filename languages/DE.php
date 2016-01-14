@@ -8,7 +8,7 @@
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.2.2 and higher
+ * @requirements    PHP 5.3 and higher and Curl 
  *
 */
  
@@ -34,6 +34,7 @@ Das Modul External Calendar erm&ouml;glicht es, externe Kalender (DavCal oder ic
 
 <p> Im Backend lassen sich viele Details zur Darstellung einstellen. Die zentrale Einstellung ist das Feld, in dem die URLs der Kalender eingegeben werden. Wird f&uuml;r den Zugriff ein Nutzername und Passwort ben&ouml;tigt, muss man diese in der URL mit angeben: [Protokoll]://[User]:[Passwort]@[Domain]/[Pfad]. <br/>
 Beachten Sie, dass nur Lesezugriff erforderlich ist. Wenn Sie keine M&ouml;glichkeit haben, den Kalender schreibgesch&uuml;tzt bereitzustellen, k&ouml;nnen Sie Ihr Passwort dadurch besser sch&uuml;tzen, dass Sie auch im Backend den Zugriff auf die Seite Einschr&auml;nken. 
+Eine https-Verbindung ist empfehlenswert. In den erweiterten Optionen kann die pr&uuml;fung des Server-Zertifikats abgeschaltet werden, wenn dieses nicht von einer vertrauensw&uuml;rdigen Zertifizierungsstelle ausgestellt ist (allerdings bedeutet der Verzicht auf die Sicherheitspr&uuml;fung ein Sicherheitsrisiko).
 </p>
 
 <p>Endet der Pfad auf &quot;/&quot; wird die URL als CalDAV interpretiert - wenn nicht, wird die URL als ical-File interpretiert. Zeilen, die mit '&#35;' beginnen, gelten als auskommentiert.</p>
@@ -103,6 +104,7 @@ $LANG['backend'] = array(
         'TXT_EXTCAL_DATE_TEMPLATE'                 => "Mit dem folgenden Template k&ouml;nnen Sie das Erscheinungsbild des Datums fein-justieren. M&ouml;gliche Platzhalter sind {START_DATE} {END_DATE} {START_TIME} {END_TIME} und {DATE_SEPARATOR}. Letzteres und der einleitende und der abschlie&szlig;ende Formatierungsblock, die das Ergebnis nach Anwendung dieses Templates einschlie&szlig;en, werden weiter oben definiert.",
         'TXT_EXTCAL_OPTIMIZE_DATE'                => "versuche die Ausgabe des Datums zu optimieren (z.B. das Enddatum weglassen, wenn es am gleichen Tag wie der Anfang des Termins ist)",
         'TXT_EXTCAL_MIDNIGHT_FIX'                => "quetsche Termine, die um Mitternacht enden noch in den Vortag",
+        'TXT_EXTCAL_VERIFY_PEER'                => "&Uuml;berpr&uuml;fe ssl-Zertifikate f&uuml;r https-Verbindungen (Sicherheitsrisiko wenn deaktiviert)",
         
 );
 

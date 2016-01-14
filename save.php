@@ -8,7 +8,7 @@
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.2.2 and higher
+ * @requirements    PHP 5.3 and higher and Curl 
  *
 */
 
@@ -78,6 +78,8 @@ if(isset($_POST['cal_urls'])) {
         if($_POST['optimize_date']==="{DEFAULT}")$optimize_date=1;
         $midnight_fix                = isset($_POST['midnight_fix']) ? 1 : 0;
         if($_POST['midnight_fix']==="{DEFAULT}")$midnight_fix=1;
+        $verify_peer                = isset($_POST['verify_peer']) ? 1 : 0;
+        if($_POST['verify_peer']==="{DEFAULT}")$verify_peer=1;
 
 
         $query = "UPDATE `".TABLE_PREFIX."mod_extcal`"
@@ -105,7 +107,8 @@ if(isset($_POST['cal_urls'])) {
                 . " `date_separator` = '$date_separator',"
                 . " `date_template` = '$date_template',"
                 . " `optimize_date` = '$optimize_date',"
-                . " `midnight_fix` = '$midnight_fix' "
+                . " `midnight_fix` = '$midnight_fix',"
+                . " `verify_peer` = '$verify_peer' "
                 . " WHERE `section_id` = '$section_id'";
         $database->query($query);        
 }

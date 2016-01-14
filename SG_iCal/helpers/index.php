@@ -9,7 +9,7 @@
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.2.2 and higher
+ * @requirements    PHP 5.3 and higher and Curl 
  *
 */
 // prevent directory listings

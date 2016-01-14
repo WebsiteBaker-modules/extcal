@@ -8,7 +8,7 @@
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.2.2 and higher
+ * @requirements    PHP 5.3 and higher and Curl 
  *
 */
 
@@ -16,8 +16,8 @@
 /* -------------------------------------------------------- */
 // Must include code to stop this file being accessed directly
 if(!defined('WB_PATH')) {
-        require_once(dirname(dirname(__FILE__)).'/framework/globalExceptionHandler.php');
-        throw new IllegalFileException();
+        // Stop this file being access directly
+        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
 }
 /* -------------------------------------------------------- */
 
@@ -58,6 +58,7 @@ if(defined('WB_URL'))
                 . " `date_template` TEXT NOT NULL DEFAULT '',"        
                 . " `optimize_date` INT DEFAULT '1',"
                 . " `midnight_fix` INT DEFAULT '1',"
+                . " `verify_peer` INT DEFAULT '1',"
                 . " PRIMARY KEY ( `section_id` )"
                 . " ) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_unicode_ci'";
         $database->query($mod_extcal);

@@ -8,7 +8,7 @@
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.2.2 and higher
+ * @requirements    PHP 5.3 and higher and Curl 
  *
 */
 
@@ -16,8 +16,8 @@
 /* -------------------------------------------------------- */
 // Must include code to stop this file being accessed directly
 if(!defined('WB_PATH')) {
-        require_once(dirname(dirname(__FILE__)).'/framework/globalExceptionHandler.php');
-        throw new IllegalFileException();
+        // Stop this file being access directly
+        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
 }
 /* -------------------------------------------------------- */
 
@@ -79,7 +79,8 @@ $query="SELECT "
         . " `date_separator`,"
         . " `date_template`,"
         . " `optimize_date`,"
-        . " `midnight_fix` "
+        . " `midnight_fix`, "
+        . " `verify_peer` "
         . " FROM `".TABLE_PREFIX."mod_extcal`"
         . " WHERE `section_id` = '$section_id'";
 
@@ -175,6 +176,10 @@ $midnight_fix = $content['midnight_fix'];
 if($midnight_fix != 0) $midnight_fix="checked";
         else $midnight_fix="";
 
+$verify_peer = $content['verify_peer'];
+if($verify_peer != 0) $verify_peer="checked";
+        else $verify_peer="";
+
 // calculate cache size
 $list = glob(dirname(__FILE__).'/cache/*.ics'); 
 $dir_size = 0;
@@ -215,6 +220,7 @@ $template->set_var(
                 'TXT_EXTCAL_DATE_TEMPLATE'                        => $LANG['backend']['TXT_EXTCAL_DATE_TEMPLATE'],
                 'TXT_EXTCAL_OPTIMIZE_DATE'                        => $LANG['backend']['TXT_EXTCAL_OPTIMIZE_DATE'],
                 'TXT_EXTCAL_MIDNIGHT_FIX'                        => $LANG['backend']['TXT_EXTCAL_MIDNIGHT_FIX'],
+                'TXT_EXTCAL_VERIFY_PEER'                                => $LANG['backend']['TXT_EXTCAL_VERIFY_PEER'],
                 'DISPLAY_ADVANCED'                                => $display_advanced,
                 'ADVANCED'                                        => $advanced,
                 'ADVANCED_BUTTON'                                => $advanced_button,
@@ -246,6 +252,7 @@ $template->set_var(
                 'MOD_EXTCAL_DATE_TEMPLATE'                            => htmlspecialchars($date_template),
                 'MOD_EXTCAL_OPTIMIZE_DATE'                        => $optimize_date,
                 'MOD_EXTCAL_MIDNIGHT_FIX'                        => $midnight_fix,
+                'MOD_EXTCAL_VERIFY_PEER'                        => $verify_peer,
                 'TEXT_SAVE'                                        => $TEXT['SAVE'],
                 'TEXT_CANCEL'                                        => $TEXT['CANCEL'],
                 'FTAN'                                                => $admin->getFTAN()

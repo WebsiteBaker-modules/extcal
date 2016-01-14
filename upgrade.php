@@ -8,7 +8,7 @@
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.2.2 and higher
+ * @requirements    PHP 5.3 and higher and Curl 
  *
 */
 
@@ -16,8 +16,8 @@
 /* -------------------------------------------------------- */
 // Must include code to stop this file being accessed directly
 if(!defined('WB_PATH')) {
-        require_once(dirname(dirname(__FILE__)).'/framework/globalExceptionHandler.php');
-        throw new IllegalFileException();
+        // Stop this file being access directly
+        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
 }
 /* -------------------------------------------------------- */
 
@@ -50,7 +50,8 @@ $MY_DB_FIELDS=array(
         "date_separator"                => "TEXT NOT NULL DEFAULT ''",        
         "date_template"                        => "TEXT NOT NULL DEFAULT ''",        
         "optimize_date"                 => "INT DEFAULT '1'",                
-        "midnight_fix"                         => "INT DEFAULT '1'"                
+        "midnight_fix"                         => "INT DEFAULT '1'",                
+        "verify_peer"                         => "INT DEFAULT '1'"                
 );
 
 
@@ -204,6 +205,7 @@ while( $fetch_content = $get_content->fetchRow() ) {
         $date_template = $fetch_content['date_template'];
         $optimize_date = $fetch_content['optimize_date'];
         $midnight_fix = $fetch_content['midnight_fix'];
+        $verify_peer = $fetch_content['verify_peer'];
 
 
         // initialize new fields
@@ -246,6 +248,9 @@ while( $fetch_content = $get_content->fetchRow() ) {
 
         if($new_fields["midnight_fix"]==1)
                 $midnight_fix="1";     
+
+        if($new_fields["verify_peer"]==1)
+                $verify_peer="1";     
 
         // if entry_template is new tranform empty strings to default settings
         if($TRANSFORM_TO_TEMPLATE) {

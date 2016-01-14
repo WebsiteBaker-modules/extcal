@@ -8,7 +8,7 @@
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.2.2 and higher
+ * @requirements    PHP 5.3 and higher and Curl 
  *
 */
 
@@ -16,8 +16,8 @@
 /* -------------------------------------------------------- */
 // Must include code to stop this file being accessed directly
 if(!defined('WB_PATH')) {
-        require_once(dirname(dirname(__FILE__)).'/framework/globalExceptionHandler.php');
-        throw new IllegalFileException();
+        // Stop this file being access directly
+        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
 }
 /* -------------------------------------------------------- */
 
@@ -52,8 +52,9 @@ $query = "INSERT INTO `".TABLE_PREFIX."mod_extcal`"
          . " `timeformat` = '{DEFAULT}',"
          . " `date_separator` = '{DEFAULT}',"
          . " `date_template` = '{DEFAULT}',"
-         . " `optimize_date` = '1' ,"
-         . " `midnight_fix` = '1' ";
+         . " `optimize_date` = '1',"
+         . " `midnight_fix` = '1',"
+         . " `verify_peer` = '1'";
 
 
 $database->query($query);

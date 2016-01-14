@@ -8,12 +8,14 @@
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.2.2 and higher
+ * @requirements    PHP 5.3 and higher and Curl 
  *
 */
 
 /*
  *        CHANGELOG
+ *        0.9.3        2016-01-14        - send user agent for advanced authentication
+ *        0.9.2        2016-01-11        - add the option to skip ssl certificate verification
  *        0.9.1        2015-07-29        - fix start time check for wholeday events
  *        0.9.0        2015-07-22        - add checkbox to control the midnight shift
  *        0.8.11        2015-07-22        - properly treat calendar urls, which are commented out
@@ -76,8 +78,8 @@
 /* -------------------------------------------------------- */
 // Must include code to stop this file being accessed directly
 if(!defined('WB_PATH')) {
-        require_once(dirname(dirname(__FILE__)).'/framework/globalExceptionHandler.php');
-        throw new IllegalFileException();
+        // Stop this file being access directly
+        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
 }
 /* -------------------------------------------------------- */
 
@@ -85,7 +87,7 @@ if(!defined('WB_PATH')) {
 $module_directory        = 'extcal';
 $module_name                = 'External Calendar';
 $module_function        = 'page';
-$module_version                = '0.9.1';
+$module_version                = '0.9.3';
 $module_platform        = 'WebsiteBaker 2.8.x';
 $module_author                = 'Martin Hecht';
 $module_license                = 'GNU General Public License';

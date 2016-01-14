@@ -8,7 +8,7 @@
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.2.2 and higher
+ * @requirements    PHP 5.3 and higher and Curl 
  *
 */
 
@@ -35,7 +35,9 @@ Le calendrier est inclus avec ce module dans la page web. Ce module n'est pas &e
 La solution la plus simple est de mettre vos fichiers iCal juste dans le dossier des m&eacut;dias ou dans le r&eacut;pertoire des calendriers de ce module et de les g&eacut;rer en utilisant le ftp-url dans votre client. Cependant, cela ne fonctionne que pour un seul client se il est assur&eacut; qu'aucun acc&egrave;s simultan&eacut; peut arriver. Si vous avez besoin de plusieurs comptes et vous cherchez un serveur WebDAV simple, vous voudrez peut-&ecirc;tre essayer Ba&iuml;kal. </ P>
 
 <P> Dans le backend vous pouvez configurer beaucoup de d&eacut;tails sur l'apparence du module. La situation centrale est la zone de texte où vous entrez les URL de vos calendriers. Si un nom d'utilisateur et mot de passe est n&eacut;cessaire pour acc&eacut;der &agrave; votre calentrier, vous devez inclure ces informations d'identification dans l'URL suivant le sch&eacut;ma [protocole]: // [utilisateur]: [mot de passe] @ [domaine] / [chemin]. <br/>
-Gardez &agrave; l'esprit que seul un acc&egrave;s en lecture est n&eacut;ccessaire. Si vous n'avez aucune possibilit&eacut; de partager le calendrier en lecture seule, vous pouvez prot&eacut;ger votre mot de passe en restreindre l'acc&egrave;s &agrave; la page dans le backend.</ P>
+Gardez &agrave; l'esprit que seul un acc&egrave;s en lecture est n&eacut;ccessaire. Si vous n'avez aucune possibilit&eacut; de partager le calendrier en lecture seule, vous pouvez prot&eacut;ger votre mot de passe en restreindre l'acc&egrave;s &agrave; la page dans le backend.
+Utilisation d'une connexion https est recommand&eacut;. Dans les options avanc&eacut;es, vous pouvez d&eacut;sactiver la v&eacut;rification du certificat du serveur au cas o&ugrave; il n'a pas &eacut;t&eacut; sign&eacut; par une autorit&eacut; de confiance (d'autre part sur un renoncement &agrave; la v&eacut;rification implique un risque de s&eacut;curit&eacut;).
+</ P>
 
 <P> Si le chemin se termine sur &quot;/&quot; l'URL est interpr&eacut;t&eacut;e comme CalDAV - sinon, il est suppos&eacut; que l'URL pointe vers un fichier iCal. Les lignes commen&ccedil;ant par '&#35;' sont consid&eacut;r&eacut;es &ecirc;tre comment&eacut;.</ P>
 
@@ -94,6 +96,8 @@ $LANG ['backend'] = array(
         'TXT_EXTCAL_CONFIDENTIAL_TEXT'                 => "texte affich&eacut; comme description pour entr&eacut;es confidentielles (y compris l'ouverture et la fermeture des balises si vous aimeriez avoir ceux autour de ce texte)",
         'TXT_EXTCAL_DATE_TEMPLATE'                 => "dans le mod&egrave;le suivant, vous pouvez affiner l'apparence de la date endroit possible titulaires sont {START_DATE}, {END_DATE}, {START_TIME}, {END_TIME} et {DATE_SEPARATOR}. Ce dernier et ouverture et de fermeture des blocs, sont enroul&eacut;s autour de la suite de cette matrice, sont d&eacut;finis ci-dessus.",
         'TXT_EXTCAL_OPTIMIZE_DATE'                 => "essayer d'optimiser la sortie de la date (par exemple l'abandon date de fin si ce est le m&ecirc;me jour)",
+        'TXT_EXTCAL_VERIFY_PEER'                => "v&eacut;rification des certificates ssl pour les connexions https (risque de s&eacut;curit&eacut; quand d&eacut;coch&eacut;e)",
+
 );
 
 

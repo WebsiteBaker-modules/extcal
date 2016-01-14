@@ -1,6 +1,8 @@
 
 /*
  *        CHANGELOG
+ *        0.9.3        2016-01-14        - send user agent for advanced authentication
+ *        0.9.2        2016-01-11        - add the option to skip ssl certificate verification
  *        0.9.1        2015-07-29        - fix start time check for wholeday events
  *        0.9.0        2015-07-22        - add checkbox to control the midnight shift
  *        0.8.11        2015-07-22        - properly treat calendar urls, which are commented out

@@ -8,7 +8,7 @@
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.2.2 and higher
+ * @requirements    PHP 5.3 and higher and Curl 
  *
 */
 
@@ -54,6 +54,7 @@ gestirli tramite ftp-url del vostro software cliente. Tuttavia, questo funziona 
 necessario includere queste credenziali nell'URL seguito del regime 
 [protocollo]: // [utente]: [password] @ [dominio] / [percorso]. <br/>
 Tenete a mente che &egrave; necessario solo l'accesso in lettura. Se no avete la possibilit&agrave; di condividere il calendario di sola lettura, si potrebbe voleer proteggere la password limitando l'accesso alla pagina nel backend.
+L'utilizo di un https connessione &egrave; raccomandato. Nelle opzioni avanzate &egrave; possibile dissattivare la verifica del certificato del server nel caso in cui quello non &egrave; firmato da un'autorit&agrave; fiduciana (d'altra parte rinunciare a una verificazione comporta un rischio per la sicurezza).
 </ P>
 
 <P> Se il percorso termina sul &quot; / &quot; l'URL viene interpretato come CalDAV - altrimenti si presume che l'URL punta a un file iCal. Le linee che iniziano con '&#35;' sono considerati essere commentata.</ P>
@@ -126,6 +127,7 @@ $LANG ['backend'] = array(
         'TXT_EXTCAL_CONFIDENTIAL_TEXT'         => "testo visualizzato come descrizione per le voci confidenziali (tra cui l'apertura e chiusura tag se si desidera averli attorno a quel testo)",
         'TXT_EXTCAL_DATE_TEMPLATE'         => "nel modello seguente &egrave; possibile mettere a punto l'aspetto della data. I possibili segnaposto sono {START_DATE}, {END_DATE}, {START_TIME}, {END_TIME} e {DATE_SEPARATOR}. Quest'ultimo e i blocchi di apertura e chiusura, che sono avvolti attorno al risultato di questo modello, sono definiti sopra. ",
         'TXT_EXTCAL_OPTIMIZE_DATE'         => "cercare di ottimizzare l'uscita data (ad esempio cadere data di fine, se &egrave; lo stesso giorno)",
+        'TXT_EXTCAL_VERIFY_PEER'        => "verificare certificati ssl per connessioni https (risicho per la sicurezza se non controllata)",
 
 );
 

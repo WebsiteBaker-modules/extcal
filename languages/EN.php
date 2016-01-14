@@ -8,7 +8,7 @@
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.2.2 and higher
+ * @requirements    PHP 5.3 and higher and Curl 
  *
 */
 
@@ -31,7 +31,8 @@ The calendar is included with this module into the web page. The focus is not on
 The most simple solution is to put your ical files just into the media folder or into the calendars directory of this module and manage them by using the ftp-url out of your client software. However, this only works for a single client where it is ensured that no concurrent access may happen. If you need several accounts and you are looking for a simple WebDAV server you might want to try out Ba&iuml;kal.</p>
 
 <p> In the backend you can configure lots of details about the appearance of the module. The central setting is the textbox where you enter the URLs of your calendars. If a username and password is needed to access your calendar, you have to include these credentials in the URL following the scheme [protocol]://[user]:[password]@[domain]/[path]. <br/>
-Keep in mind that only read-access is required. If you have no possibility to share the calendar read-only, you might want to protect your password by restricting the access to the page in the backend.
+Keep in mind that only read-access is required. If you have no possibility to share the calendar read-only, you might want to protect your password by restricting the access to the page in the backend. 
+Using an https-connection is recommended. In the advanced options you can disable the verification of the server certificate in case it is not signed by a trusted authority (on the other hand renouncing on a verification implies a security risk).
 </p>
 
 <p>If the path terminates on &quot;/&quot; the URL is interpreted as CalDAV - otherwise it is assumed that the URL points to an ical-file. Lines starting with '&#35;' are considered commented-out.</p>
@@ -93,6 +94,7 @@ $LANG['backend'] = array(
         'TXT_EXTCAL_DATE_TEMPLATE'                 => "in the following template you can fine-tune the appearance of the date. Possible place holders are {START_DATE} {END_DATE} {START_TIME} {END_TIME} and {DATE_SEPARATOR}.  The latter and the opening and closing blocks, are wrapped around the result of this template, are defined above.",
         'TXT_EXTCAL_OPTIMIZE_DATE'                => "try to optimize the date output (e.g. drop end date if it is on the same day)",
         'TXT_EXTCAL_MIDNIGHT_FIX'                => "squeeze appointments ending at midnight into the day before",
+        'TXT_EXTCAL_VERIFY_PEER'                => "verify ssl-certificates for https-connections (security risk if unchecked)",
 
 );
 

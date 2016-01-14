@@ -8,7 +8,7 @@
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.2.2 and higher
+ * @requirements    PHP 5.3 and higher and Curl 
  *
 */
 
@@ -16,8 +16,8 @@
 /* -------------------------------------------------------- */
 // Must include code to stop this file being accessed directly
 if(!defined('WB_PATH')) {
-        require_once(dirname(dirname(__FILE__)).'/framework/globalExceptionHandler.php');
-        throw new IllegalFileException();
+        // Stop this file being access directly
+        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
 }
 /* -------------------------------------------------------- */
 
@@ -65,7 +65,8 @@ $query="SELECT "
         . " `date_separator`,"
         . " `date_template`,"
         . " `optimize_date`,"
-        . " `midnight_fix` "
+        . " `midnight_fix`,"
+        . " `verify_peer` "
         . " FROM `".TABLE_PREFIX."mod_extcal`"
         . " WHERE `section_id` = '$section_id'";
 
@@ -97,6 +98,7 @@ $date_separator = $fetch_content['date_separator'];
 $date_template = $fetch_content['date_template'];
 $optimize_date = $fetch_content['optimize_date'];
 $midnight_fix = $fetch_content['midnight_fix'];
+$verify_peer = $fetch_content['verify_peer'];
 
 
 $starttime=date("Ymd");
@@ -184,7 +186,7 @@ foreach ($calendars as $ICS){
                 if (copy($cachefile, $filename) === FALSE) break;
         } else {
                 if (preg_match('/\/$/',$ICS)){
-                        if (file_put_contents($filename,WebDAVFetch($ICS,$enable_cache,$cache_time)) === FALSE) break;
+                        if (file_put_contents($filename,WebDAVFetch($ICS,$enable_cache,$cache_time,$verify_peer)) === FALSE) break;
                 } else {
                         if (copy($ICS, $filename) === FALSE) break;
                 }

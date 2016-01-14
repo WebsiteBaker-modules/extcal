@@ -8,7 +8,7 @@
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.2.2 and higher
+ * @requirements    PHP 5.3 and higher and Curl 
  *
 */
 
@@ -16,8 +16,8 @@
 /* -------------------------------------------------------- */
 // Must include code to stop this file being accessed directly
 if(!defined('WB_PATH')) {
-        require_once(dirname(dirname(__FILE__)).'/framework/globalExceptionHandler.php');
-        throw new IllegalFileException();
+        // Stop this file being access directly
+        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
 }
 /* -------------------------------------------------------- */
 
@@ -28,7 +28,7 @@ if(!defined('WB_PATH')) {
 
 include_once('SabreDAV/vendor/autoload.php');
 
-function WebDAVFetch ($URL,$enable_cache,$cache_time){
+function WebDAVFetch ($URL,$enable_cache,$cache_time,$verify_peer){
 
         $parts=parse_url($URL);
 
@@ -47,6 +47,11 @@ function WebDAVFetch ($URL,$enable_cache,$cache_time){
 
         $client = new Sabre\DAV\Client($settings);
 
+        if(!$verify_peer)$client->addCurlSetting(CURLOPT_SSL_VERIFYPEER, FALSE);
+        if(array_key_exists('HTTP_USER_AGENT', $_SERVER))
+                $client->addCurlSetting(CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+                else $client->addCurlSetting(CURLOPT_USERAGENT, 'Curl');
+        
         $entries=$client->propfind(
                 '',
                 array(
