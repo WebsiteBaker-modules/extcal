@@ -14,6 +14,8 @@
 
 /*
  *        CHANGELOG
+ *        0.9.5        2016-01-15        - do not overwrite style file upon upgrade anymore
+ *        0.9.4        2016-01-15        - improved the placeholders in template for allday events
  *        0.9.3        2016-01-14        - send user agent for advanced authentication
  *        0.9.2        2016-01-11        - add the option to skip ssl certificate verification
  *        0.9.1        2015-07-29        - fix start time check for wholeday events
@@ -87,7 +89,7 @@ if(!defined('WB_PATH')) {
 $module_directory        = 'extcal';
 $module_name                = 'External Calendar';
 $module_function        = 'page';
-$module_version                = '0.9.3';
+$module_version                = '0.9.5';
 $module_platform        = 'WebsiteBaker 2.8.x';
 $module_author                = 'Martin Hecht';
 $module_license                = 'GNU General Public License';

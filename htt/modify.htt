@@ -188,7 +188,9 @@
                        {TXT_EXTCAL_MIDNIGHT_FIX}
                        <input type="checkbox" name="midnight_fix" value="midnight_fix" {MOD_EXTCAL_MIDNIGHT_FIX}><br />
                        {TXT_EXTCAL_VERIFY_PEER}
-                       <input type="checkbox" name="verify_peer" value="verify_peer" {MOD_EXTCAL_VERIFY_PEER}><br />
+                       <input type="checkbox" name="verify_peer" value="verify_peer" {MOD_EXTCAL_VERIFY_PEER}>
+</p>
+<p>
 {TXT_EXTCAL_DATE_TEMPLATE}:</p>
 <textarea cols="2" rows="10"  id="date_template" name="date_template" style="width: 100%; height: 190px">{MOD_EXTCAL_DATE_TEMPLATE}</textarea>
                </td>

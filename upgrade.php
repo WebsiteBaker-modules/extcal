@@ -23,6 +23,8 @@ if(!defined('WB_PATH')) {
 
 
 
+$example_url=WB_URL."/modules/extcal/calendars/example.ics";
+
 // these fields should be there - add them to the array and the upgrade script creates them
 
 $MY_DB_FIELDS=array(
@@ -84,10 +86,6 @@ if(($sOldType = $database->getTableEngine($sTable))) {
 } else {
         $msg = $database->get_error();
 }
-
-$example_url=WB_URL.__FILE__;
-$example_url=preg_replace('/upgrade.php$/',"calendars/example.ics",$example_url);
-
 
 
 // assuming section_id and page_id always exist
@@ -445,7 +443,10 @@ if(!$database->query('ALTER TABLE `'.$table_name.'` Engine = \'MyISAM\' ')) {
         $admin->print_error( $database->get_error() );
 }
 
+//Copy settings files
+$mpath = WB_PATH.'/modules/extcal/';
+
+if (!file_exists($mpath.'frontend.css')) { copy($mpath.'default.css', $mpath.'frontend.css') ; }
+
+
 print " ready. </div>";
-
-
-

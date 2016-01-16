@@ -304,6 +304,14 @@ foreach($data as $key => $entry){
                         // fetch this again for below
                         $end_date=date($dateformat,$entry["end"]);  
                         $end_time=date($timeformat,$entry["end"]);
+                        if($midnight_fix && date("H:i",$entry["end"])=="00:00"){
+                                $end_date=date($dateformat,$entry["end"]-1);
+                                $end_time=date($timeformat,$entry["end"]-1);
+                        }        
+                        if($entry["allDay"]){
+                                $start_time="";
+                                $end_time="";
+                        }
                 }
 
                 $date_string = preg_replace("/{DATE_SEPARATOR}/",$date_separator,$date_string);
@@ -334,7 +342,10 @@ foreach($data as $key => $entry){
                 $output_string = preg_replace("/{END_DATE}/",$end_date,$output_string);
                 $output_string = preg_replace("/{START_TIME}/",$start_time,$output_string);
                 $output_string = preg_replace("/{END_TIME}/",$end_time,$output_string);
-                $output_string = preg_replace("/{DATE_SEPARATOR}/",$date_separator,$output_string);
+                if(($date_string=="")&&($entry["allDay"]))
+                        $output_string = preg_replace("/{DATE_SEPARATOR}/","",$output_string);
+                else
+                        $output_string = preg_replace("/{DATE_SEPARATOR}/",$date_separator,$output_string);
 
                 $output_string = preg_replace("/{LOCATION}/",$entry["location"],$output_string);
                 $output_string = preg_replace("/{TITLE}/",$entry["title"],$output_string);

@@ -62,4 +62,10 @@ if(defined('WB_URL'))
                 . " PRIMARY KEY ( `section_id` )"
                 . " ) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_unicode_ci'";
         $database->query($mod_extcal);
+
+//Copy settings files
+$mpath = WB_PATH.'/modules/extcal/';
+
+if (!file_exists($mpath.'frontend.css')) { copy($mpath.'default.css', $mpath.'frontend.css') ; }
+
 }
