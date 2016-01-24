@@ -260,7 +260,7 @@ ChangeLog
 * Added: Browser can now inspect any node, if ?sabreaction=browser is appended.
 * Fixed: Issue #178. Support for multiple items in the Timeout header.
 * Fixed: Issue #382. Stricter checking if calendar-query is allowed to run.
-* Added: Depth: Infinity support for PROPFIND request. Thanks Thomas Müller and
+* Added: Depth: Infinity support for PROPFIND request. Thanks Thomas M&uuml;ller and
   Markus Goetz.
 
 
@@ -786,7 +786,7 @@ ChangeLog
 * Added: Support for time-range filters on VALARM components.
 * Fixed: Correctly filtering all-day events.
 * Fixed: Sending back correct mimetypes from the browser plugin (thanks
-  Jürgen).
+  J&uuml;rgen).
 * Fixed: Issue 195: Sabre_CardDAV pear package had an incorrect dependency.
 * Fixed: Calendardata would be destroyed when performing a MOVE request.
 

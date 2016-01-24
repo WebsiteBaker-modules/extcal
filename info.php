@@ -3,6 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
+ * @version         0.9.6
  * @authors         Martin Hecht
  * @copyright       2004-2015, Website Baker Org. e.V.
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -10,10 +11,11 @@
  * @platform        WebsiteBaker 2.8.x
  * @requirements    PHP 5.3 and higher and Curl 
  *
-*/
+ **/
 
 /*
  *        CHANGELOG
+ *        0.9.6        2016-01-15        - correctly show long lasting current appointments
  *        0.9.5        2016-01-15        - do not overwrite style file upon upgrade anymore
  *        0.9.4        2016-01-15        - improved the placeholders in template for allday events
  *        0.9.3        2016-01-14        - send user agent for advanced authentication
@@ -89,7 +91,7 @@ if(!defined('WB_PATH')) {
 $module_directory        = 'extcal';
 $module_name                = 'External Calendar';
 $module_function        = 'page';
-$module_version                = '0.9.5';
+$module_version                = '0.9.6';
 $module_platform        = 'WebsiteBaker 2.8.x';
 $module_author                = 'Martin Hecht';
 $module_license                = 'GNU General Public License';
