@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         0.9.6
+ * @version         0.9.9
  * @authors         Martin Hecht
  * @copyright       2004-2015, Website Baker Org. e.V.
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -188,8 +188,12 @@ foreach ($calendars as $ICS){
         } else {
                 if (preg_match('/\/$/',$ICS)){
                         if (file_put_contents($filename,WebDAVFetch($ICS,$enable_cache,$cache_time,$verify_peer)) === FALSE) break;
-                } else {
-                        if (copy($ICS, $filename) === FALSE) break;
+                } else { // try without curl
+                        $copy_result=get_copy($ICS, $filename, $verify_peer);
+                        if(!($copy_result === TRUE)){
+                                //retry with curl 
+                                if(!curl_get_copy($ICS, $filename, $verify_peer)) break;
+                        }
                 }
                 if($enable_cache)copy($filename,$cachefile);
         }

@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         0.9.6
+ * @version         0.9.9
  * @authors         Martin Hecht
  * @copyright       2004-2015, Website Baker Org. e.V.
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -15,6 +15,9 @@
 
 /*
  *        CHANGELOG
+ *        0.9.9        2016-01-26        - add ssl support for authenticated get requests
+ *        0.9.8        2016-01-25        - set user agent to Extcal instead of real one
+ *        0.9.7        2016-01-25        - better handle ssl in get requests (skip if requestetd)
  *        0.9.6        2016-01-15        - correctly show long lasting current appointments
  *        0.9.5        2016-01-15        - do not overwrite style file upon upgrade anymore
  *        0.9.4        2016-01-15        - improved the placeholders in template for allday events
@@ -91,7 +94,7 @@ if(!defined('WB_PATH')) {
 $module_directory        = 'extcal';
 $module_name                = 'External Calendar';
 $module_function        = 'page';
-$module_version                = '0.9.6';
+$module_version                = '0.9.9';
 $module_platform        = 'WebsiteBaker 2.8.x';
 $module_author                = 'Martin Hecht';
 $module_license                = 'GNU General Public License';

@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         0.9.6
+ * @version         0.9.9
  * @authors         Martin Hecht
  * @copyright       2004-2015, Website Baker Org. e.V.
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -49,9 +49,7 @@ function WebDAVFetch ($URL,$enable_cache,$cache_time,$verify_peer){
         $client = new Sabre\DAV\Client($settings);
 
         if(!$verify_peer)$client->addCurlSetting(CURLOPT_SSL_VERIFYPEER, FALSE);
-        if(array_key_exists('HTTP_USER_AGENT', $_SERVER))
-                $client->addCurlSetting(CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
-                else $client->addCurlSetting(CURLOPT_USERAGENT, 'Curl');
+        $client->addCurlSetting(CURLOPT_USERAGENT, 'Extcal');
         
         $entries=$client->propfind(
                 '',
@@ -88,4 +86,146 @@ function WebDAVFetch ($URL,$enable_cache,$cache_time,$verify_peer){
 }
 
 
-?>
+function curl_get_copy($URL='',$target_file='',$verify_peer=TRUE){
+
+        $parts=parse_url($URL);
+
+        $location=$parts['scheme'].'://'.$parts['host'].$parts['path'];
+
+        if(!array_key_exists('host',$parts)){$parts['host']=$parts['path'];$parts['path']='/';};
+        if(!array_key_exists('scheme',$parts))$parts['scheme']='http';
+        if(!array_key_exists('path',$parts))$parts['path']='';
+
+        $location=$parts['scheme'].'://'.$parts['host'].$parts['path'];
+
+        $userpwd='';
+
+        if (array_key_exists('user',$parts)) $userpwd =  $parts['user'];
+        if (array_key_exists('pass',$parts)) $userpwd =  $userpwd.":".$parts['pass'];
+
+        $ch = curl_init();
+
+        $fp = fopen($target_file, "w");
+        curl_setopt($ch, CURLOPT_FILE, $fp);
+        curl_setopt($ch,  CURLOPT_RETURNTRANSFER, 1);
+
+
+        if(!$verify_peer)  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_URL,$location);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Extcal');
+        curl_setopt($ch, CURLOPT_USERPWD, $userpwd);
+        $contents=curl_exec($ch);
+
+        fwrite($fp, $contents);
+        
+        curl_close($ch);
+        fclose($fp);
+        return TRUE;
+}
+
+
+
+function get_copy($fURI='', $target_file='',$verify_peer=TRUE)
+{
+// $fURI:         URL to a file located on a web server
+// $target_file:    Path to a local file   
+
+if ( file_exists( $target_file ) ) {
+    $ifmodhdr = 'If-Modified-Since: '.date( "r", filemtime( $target_file ) )."\r\n";
+}
+else {
+    $ifmodhdr = '';
+}
+
+// set request header for GET with referrer for modified files, that follows redirects           
+$arrRequestHeaders = array(
+        'http'=>array(
+        'method'        =>'GET',
+        'protocol_version'    =>1.1,
+        'follow_location'    =>1,
+        'header'=>    "User-Agent: Extcal\r\n" .
+                     "Referer: $source\r\n" .
+            $ifmodhdr
+            )
+        );
+if((strpos($fURI,'https')===0)&&(!$verify_peer))
+        $arrRequestHeaders['ssl']=array('verify_peer'   => FALSE);
+
+$rc = copy( $fURI, $target_file, stream_context_create($arrRequestHeaders) );
+
+// HTTP request completed, preserve system error, if any
+if( $rc ) {
+    if ( fclose( $rc ) ) {
+        unset( $err );
+    }
+    else {
+        $err = error_get_last();
+    }
+}
+else {
+    $err = error_get_last();
+}
+       
+// Parse HTTP Response Headers for  HTTP Status, as well filename, type, date information
+// Need to start from rear, to get last set of headers after possible sets of redirection headers
+if ( $http_response_header ) {
+    for ( $i = sizeof($http_response_header) - 1; $i >= 0; $i-- ) {
+        if ( preg_match('@^http/\S+ (\S{3,}) (.+)$@i', $http_response_header[$i], $http_status) > 0 ) {
+            // HTTP Status header means we have reached beginning of response headers for last request
+            break;
+        }
+        elseif ( preg_match('@^(\S+):\s*(.+)\s*$@', $http_response_header[$i], $arrHeader) > 0 ) {
+            switch ( $arrHeader[1] ) {
+                case 'Last-Modified':
+                    if ( !isset($http_content_modtime) ) {
+                        $http_content_modtime = strtotime( $arrHeader[2] );
+                    }                       
+                    break;
+                case 'Content-Type':
+                        // skip type checking - maybe we include it later
+                    break;
+                case 'Content-Disposition':
+                    if ( !isset($http_content_filename) && preg_match('@filename\\s*=\\s*(?|"([^"]+)"|([\\S]+));?@ims', $arrHeader[2], $arrTokens) > 0 ) {
+                        $http_content_filename = basename($arrTokens[1]);
+                    }                       
+                    break;
+            }
+        }
+    }
+}
+
+if ( $http_status ) {
+    // Make sure we have good HTTP Status
+    switch ( $http_status[1] ) {
+        case '200':
+            // SUCCESS: HTTP Status is "200 OK"
+            break;
+        case '304':
+            // throw new Exception( "Remote file not newer: $fURI", $http_status[1] );
+            return "Remote file not newer: $fURI $http_status[1]";
+            break;
+        case '404':
+            // throw new Exception( "Remote file not found: $fURI", $http_status[1] );
+            return "Remote file not found: $fURI $http_status[1]";
+            break;
+        default:
+            // throw new Exception( "HTTP Error, $http_status[2], accessing $fURI", $http_status[1] );
+            return "HTTP Error, $http_status[2], accessing $fURI, $http_status[1]";
+            break;
+    }
+}
+elseif ( $err ) {
+    // Protocol / Communication error
+    // throw new Exception( $err['message']/*."; Remote file: $fURI"*/, $err['type'] );
+    return $err['message']/*."; Remote file: $fURI"*/ . $err['type'];
+}
+else {
+    // No HTTP status and no error
+    // throw new customException( "Unknown HTTP response accessing $fURI: $http_response_header[0]", -1 );
+    return "Unknown HTTP response accessing $fURI: $http_response_header[0]";
+}
+return TRUE;
+}
