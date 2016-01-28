@@ -3,10 +3,11 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         0.9.9
+ * @version         1.0.0
  * @authors         Martin Hecht
  * @copyright       2004-2015, Website Baker Org. e.V.
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
+ * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
  * @requirements    PHP 5.3 and higher and Curl 
@@ -188,11 +189,17 @@ foreach ($calendars as $ICS){
         } else {
                 if (preg_match('/\/$/',$ICS)){
                         if (file_put_contents($filename,WebDAVFetch($ICS,$enable_cache,$cache_time,$verify_peer)) === FALSE) break;
-                } else { // try without curl
-                        $copy_result=get_copy($ICS, $filename, $verify_peer);
-                        if(!($copy_result === TRUE)){
-                                //retry with curl 
+                } else {
+                        if(function_exists('curl_init')){
                                 if(!curl_get_copy($ICS, $filename, $verify_peer)) break;
+                        } else {
+                                 // try without curl 
+                                 // works for public source and basic authentication only
+                                 $copy_result=get_copy($ICS, $filename, $verify_peer);
+                                 if(!($copy_result === TRUE)){
+                                         echo $copy_result;
+                                         break;
+                                 }
                         }
                 }
                 if($enable_cache)copy($filename,$cachefile);
@@ -232,10 +239,10 @@ foreach ($calendars as $ICS){
                                 if (!$next or $count >= 1000) break;
                                 $count++;
                                 $start = $next;
-                                if(($start >= strtotime($endtime)) && ($endtime!=0)) break;
                                 $curr_Evt["start"] = $start;
                                 $curr_Evt["end"] = $start + $ev->getDuration();
                                 $data[] = $curr_Evt;
+                                if(($start >= strtotime($endtime)) && ($endtime!=0)) break;
                         }
                 } else {
                         $start = $ev->getStart();
@@ -256,8 +263,16 @@ array_multisort($astart, SORT_ASC, $data);
 
 echo $section_start;
 
+if (file_exists(WB_PATH.'/modules/extcal/user_functions.php'))
+        include_once(WB_PATH.'/modules/extcal/user_functions.php');
+
 $counter=0;
 foreach($data as $key => $entry){
+
+        // user function hook to modify values of the entry before processing
+        if(function_exists('extcal_user_prepare_entry'))
+                $entry=extcal_user_prepare_entry($entry);
+                
         if((($entry["start"]>=strtotime($starttime))||($entry["end"]>=strtotime($starttime)))
           &&(!array_key_exists("class",$entry["data"])
           ||preg_match("/PRIVATE/i",$entry["data"]["class"])===0)){
@@ -338,23 +353,33 @@ foreach($data as $key => $entry){
                         $entry["description"]="";
                         $entry["title"]=$confidential_text;
                 }
-                $output_string = $entry_template;
-
-                $output_string = preg_replace("/{DATE}/",$date_string,$output_string);
                 
-                // if the user decided not to use {DATE} but the individual place holders...
-                $output_string = preg_replace("/{START_DATE}/",$start_date,$output_string);
-                $output_string = preg_replace("/{END_DATE}/",$end_date,$output_string);
-                $output_string = preg_replace("/{START_TIME}/",$start_time,$output_string);
-                $output_string = preg_replace("/{END_TIME}/",$end_time,$output_string);
-                if(($date_string=="")&&($entry["allDay"]))
-                        $output_string = preg_replace("/{DATE_SEPARATOR}/","",$output_string);
-                else
-                        $output_string = preg_replace("/{DATE_SEPARATOR}/",$date_separator,$output_string);
+                $output_string = $entry_template;
+                
+                $placeholders = array (
+                        '{DATE}'        => $date_string,
+                        '{START_DATE}'        => $start_date,
+                        '{END_DATE}'        => $end_date,
+                        '{START_TIME}'        => $start_time,
+                        '{END_TIME}'        => $end_time,
+                        '{DATE_SEPARATOR}' => (($date_string=="")&&($entry["allDay"]))?"":$date_separator,
+                        '{LOCATION}'        => $entry["location"],
+                        '{TITLE}'        => $entry["title"],
+                        '{DESCRIPTION}' => $entry["description"]
+                );
+                
+                // user function hook to process the individual place holders
+                if(function_exists('extcal_user_process_placeholders'))
+                        $placeholders=extcal_user_process_placeholders($placeholders);
+                
+                        
+                foreach($placeholders as $template_key => $template_value)
+                        $output_string = preg_replace("/$template_key/",$template_value,$output_string);
+                
 
-                $output_string = preg_replace("/{LOCATION}/",$entry["location"],$output_string);
-                $output_string = preg_replace("/{TITLE}/",$entry["title"],$output_string);
-                $output_string = preg_replace("/{DESCRIPTION}/",$entry["description"],$output_string);
+                // user function hook to postprocess the whole entry
+                if(function_exists('extcal_user_postprocess_entry'))
+                        $output_string=extcal_user_postprocess_entry($output_string);
 
                 echo $output_string."\n";
                 $counter++;

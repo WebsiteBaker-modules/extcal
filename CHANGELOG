@@ -1,9 +1,10 @@
 
 /*
  *        CHANGELOG
- *        0.9.9        2016-01-26        - add ssl support for authenticated get requests
+ *        1.0.0        2016-01-28        - add user function hooks
+ *        0.9.9        2016-01-26        - support digest authentication for get requests
  *        0.9.8        2016-01-25        - set user agent to Extcal instead of real one
- *        0.9.7        2016-01-25        - better handle ssl in get requests (skip if requestetd)
+ *        0.9.7        2016-01-25        - better handle ssl in get requests (skip verification if requestetd)
  *        0.9.6        2016-01-15        - correctly show long lasting current appointments
  *        0.9.5        2016-01-15        - do not overwrite style file upon upgrade anymore
  *        0.9.4        2016-01-15        - improved the placeholders in template for allday events

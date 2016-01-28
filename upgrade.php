@@ -3,10 +3,11 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         0.9.9
+ * @version         1.0.0
  * @authors         Martin Hecht
  * @copyright       2004-2015, Website Baker Org. e.V.
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
+ * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
  * @requirements    PHP 5.3 and higher and Curl 
@@ -449,5 +450,6 @@ $mpath = WB_PATH.'/modules/extcal/';
 
 if (!file_exists($mpath.'frontend.css')) { copy($mpath.'default.css', $mpath.'frontend.css') ; }
 
+if (!file_exists($mpath.'user_functions.php')) { copy($mpath.'user_functions.default.php', $mpath.'user_functions.php') ; }
 
 print " ready. </div>";
