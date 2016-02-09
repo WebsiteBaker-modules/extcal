@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.0.0
+ * @version         1.0.9
  * @authors         Martin Hecht
- * @copyright       2004-2015, Website Baker Org. e.V.
+ * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -68,7 +68,9 @@ $query="SELECT "
         . " `date_template`,"
         . " `optimize_date`,"
         . " `midnight_fix`,"
-        . " `verify_peer` "
+        . " `verify_peer`,"
+        . " `keep_todays_events`,"
+        . " `time_offset` "
         . " FROM `".TABLE_PREFIX."mod_extcal`"
         . " WHERE `section_id` = '$section_id'";
 
@@ -101,11 +103,10 @@ $date_template = $fetch_content['date_template'];
 $optimize_date = $fetch_content['optimize_date'];
 $midnight_fix = $fetch_content['midnight_fix'];
 $verify_peer = $fetch_content['verify_peer'];
+$keep_todays_events = $fetch_content['keep_todays_events'];
+$time_offset = $fetch_content['time_offset'];
 
 
-$starttime=date("Ymd");
-$endtime=date("Ymd", strtotime("+".$max_days." days", strtotime($starttime)));
-if($max_days==0)$endtime=0;
 
 // for the calendar stuff we need a proper timezone
 
@@ -117,6 +118,12 @@ if($time_zone === "{DEFAULT}" or $time_zone===NULL)
 
 $SAVED_TZ=date_default_timezone_get();
 date_default_timezone_set($time_zone);
+
+// select range for displaying events *after* having set the time correct zone
+$starttime=date("Ymd",strtotime("+$time_offset seconds"));
+if(!$keep_todays_events) $starttime.="T".date("His",strtotime("+$time_offset seconds"));  
+$endtime=date("Ymd", strtotime("+".$max_days." days", strtotime($starttime)));
+if($max_days==0)$endtime=0;
 
 
 if($dateformat === "{DEFAULT}" or $dateformat===NULL)
@@ -167,6 +174,38 @@ if($date_separator === "{DEFAULT}" or $date_separator===NULL)
 if($date_template === "{DEFAULT}" or $date_template===NULL)
         $date_template=$LANG['frontend']['MOD_EXTCAL_DATE_TEMPLATE'];
 
+// update fetch_contets array now
+
+$fetch_content=array(
+    'cal_urls' => $cal_urls,
+    'max_days' => $max_days,
+    'max_entries' => $max_entries,
+    'time_zone' => $time_zone,
+    'dateformat' => $dateformat,
+    'date_end' => $date_end,
+    'section_start' => $section_start,
+    'section_end' => $section_end,
+    'enable_cache' => $enable_cache,
+    'refresh_time' => $refresh_time,
+    'cache_time' => $cache_time,
+    'description_end' => $description_end,
+    'entry_template' => $entry_template,
+    'description_start' => $description_start,
+    'location_start' => $location_start,
+    'location_end' => $location_end,
+    'title_start' => $title_start,
+    'title_end' => $title_end,
+    'date_start' => $date_start,
+    'confidential_text' => $confidential_text,
+    'timeformat' => $timeformat,
+    'date_separator' => $date_separator,
+    'date_template' => $date_template,
+    'optimize_date' => $optimize_date,
+    'midnight_fix' => $midnight_fix,
+    'verify_peer' => $verify_peer,
+    'keep_todays_events' => $keep_todays_events,
+    'time_offset' => $time_offset
+);
 
 require_once('SG_iCal/SG_iCal.php');
 require_once('client.php');
@@ -175,7 +214,7 @@ $calendars = preg_replace("/#.*/","",preg_split("/[\s]+/", $cal_urls));
 
 $data = array();
 
-
+if($max_entries>=0 && $max_days>=0)
 foreach ($calendars as $ICS){
    if($ICS!=""){
         $filename = tempnam(sys_get_temp_dir(), 'ICS');
@@ -239,10 +278,10 @@ foreach ($calendars as $ICS){
                                 if (!$next or $count >= 1000) break;
                                 $count++;
                                 $start = $next;
+                                if(($start >= strtotime($endtime)) && ($endtime!=0)) break;
                                 $curr_Evt["start"] = $start;
                                 $curr_Evt["end"] = $start + $ev->getDuration();
                                 $data[] = $curr_Evt;
-                                if(($start >= strtotime($endtime)) && ($endtime!=0)) break;
                         }
                 } else {
                         $start = $ev->getStart();
@@ -254,9 +293,13 @@ foreach ($calendars as $ICS){
     }
 }
 
+
+$astart = array();
+
 foreach($data as $key => $entry){
         $astart[$key]  = $entry["start"];
 }
+
 
 array_multisort($astart, SORT_ASC, $data);
 

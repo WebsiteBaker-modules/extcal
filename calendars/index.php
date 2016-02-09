@@ -4,9 +4,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.0.0
+ * @version         1.0.9
  * @authors         Martin Hecht
- * @copyright       2004-2015, Website Baker Org. e.V.
+ * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License

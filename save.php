@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.0.0
+ * @version         1.0.9
  * @authors         Martin Hecht
- * @copyright       2004-2015, Website Baker Org. e.V.
+ * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -82,6 +82,10 @@ if(isset($_POST['cal_urls'])) {
         if($_POST['midnight_fix']==="{DEFAULT}")$midnight_fix=1;
         $verify_peer                = isset($_POST['verify_peer']) ? 1 : 0;
         if($_POST['verify_peer']==="{DEFAULT}")$verify_peer=1;
+        $keep_todays_events        = isset($_POST['keep_todays_events']) ? 1 : 0;
+        if($_POST['keep_todays_events']==="{DEFAULT}")$keep_todays_events=1;
+        $time_offset                 = intval($_POST['time_offset']) or $time_offset = 0;
+        if($_POST['time_offset']==="{DEFAULT}")$time_offset=0;
 
 
         $query = "UPDATE `".TABLE_PREFIX."mod_extcal`"
@@ -110,7 +114,9 @@ if(isset($_POST['cal_urls'])) {
                 . " `date_template` = '$date_template',"
                 . " `optimize_date` = '$optimize_date',"
                 . " `midnight_fix` = '$midnight_fix',"
-                . " `verify_peer` = '$verify_peer' "
+                . " `verify_peer` = '$verify_peer',"
+                . " `keep_todays_events` = '$keep_todays_events',"
+                . " `time_offset` = '$time_offset' "
                 . " WHERE `section_id` = '$section_id'";
         $database->query($query);        
 }

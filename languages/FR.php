@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.0.0
+ * @version         1.0.9
  * @authors         Martin Hecht
- * @copyright       2004-2015, Website Baker Org. e.V.
+ * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -43,7 +43,8 @@ Utilisation d'une connexion https est recommand&eacut;. Dans les options avanc&e
 
 <P> Si le chemin se termine sur &quot;/&quot; l'URL est interpr&eacut;t&eacut;e comme CalDAV - sinon, il est suppos&eacut; que l'URL pointe vers un fichier iCal. Les lignes commen&ccedil;ant par '&#35;' sont consid&eacut;r&eacut;es &ecirc;tre comment&eacut;.</ P>
 
-<P>Les entr&eacut;es de calendrier peuvent &ecirc;tre limit&eacut;es dans le sens de combien de jours &agrave; l'avenir doivent &ecirc;tre affich&eacut;s. En outre, vous pouvez configurer une limite pour le nombre de rendez-vous pour montrer. Si vous entrez un z&eacut;ro pour une de ces limites, cela signifie &quot; illimit&eacut;e &quot;. </ P>
+<P>Les entr&eacut;es de calendrier peuvent &ecirc;tre limit&eacut;es dans le sens de combien de jours &agrave; l'avenir doivent &ecirc;tre affich&eacut;s. En outre, vous pouvez configurer une limite pour le nombre de rendez-vous pour montrer. Si vous entrez un z&eacut;ro pour une de ces limites, cela signifie &quot; illimit&eacut;e &quot;. Dans les options avanc&eacut;es, vous pouvez sp&eacut;cifier si les dates &eacut;coul&eacut;es seront pr&eacut;sent&eacut;s jusqu'&agrave; minuit avant qu'ils ne disparaissent. 
+Vous pouvez &eacut;galement r&eacut;gler un d&eacut;calage en secondes, qui est appliqu&eacut;e &agrave; l'heure actuelle du serveur avant de le comparer &agrave; une entr&eacut;e de calendrier.</ P>
 
 <P> Le fuseau horaire sur la base duquel les dates dans les calandres sont interpr&eacut;t&eacut;s, peut &ecirc;tre configur&eacut; dans le backend, aussi. Ceci est particuli&egrave;rement important pour une manipulation correcte des rendez-vous entre la lumi&egrave;re du jour-&eacut;pargne. Choisissez le fuseau horaire correspondant &agrave; votre pays. Ne pas utiliser quelque chose comme &quot; UTC + X heures &quot ;, de car ce param&egrave;tre ne serait pas au courant de l'heure d'&eacut;t&eacut;. 
  Vous pouvez &eacut;galement laisser le champ vide, alors le module tente de d&eacut;terminer le fuseau horaire dans les param&egrave;tres globaux linguistiques de WebsiteBaker (cela devrait fonctionner pour l'Allemagne, l'Angleterre, la France et l'Italie, actuellement). Pour r&eacut;initialiser l'un des champs, il suffit d'entrer &quot; {DEFAULT} &quot; et enregistrer les r&eacut;glages. </ p>
@@ -93,12 +94,14 @@ $LANG ['backend'] = array(
         'TXT_EXTCAL_LOCATION_START'                 => "mise en forme au d&eacut;but d'un lieu (pr&eacut;fix&eacut; &agrave; {LOCATION})",
         'TXT_EXTCAL_LOCATION_END'                 => "formatage &agrave; la fin d'un lieu (annex&eacut; &agrave; {LOCATION})",
         'TXT_EXTCAL_TITLE_START'                 => "mise en forme au d&eacut;but d'un titre (pr&eacut;fix&eacut; &agrave; {TITLE})",
-        'TXT_EXTCAL_TITLE_END'                         => "formatage &agrave; la fin d'un titre (annex&eacut; &agrave; {TITLE})",
+        'TXT_EXTCAL_TITLE_END'                         => "formatage &agrave; la fin d'un titre (annex&eacut; &agrave; {TITLE})",c
         'TXT_EXTCAL_DATE_START'                 => "mise en forme au d&eacut;but de la date (pr&eacut;fix&eacut; &agrave; {DATE})",
         'TXT_EXTCAL_CONFIDENTIAL_TEXT'                 => "texte affich&eacut; comme description pour entr&eacut;es confidentielles (y compris l'ouverture et la fermeture des balises si vous aimeriez avoir ceux autour de ce texte)",
         'TXT_EXTCAL_DATE_TEMPLATE'                 => "dans le mod&egrave;le suivant, vous pouvez affiner l'apparence de la date endroit possible titulaires sont {START_DATE}, {END_DATE}, {START_TIME}, {END_TIME} et {DATE_SEPARATOR}. Ce dernier et ouverture et de fermeture des blocs, sont enroul&eacut;s autour de la suite de cette matrice, sont d&eacut;finis ci-dessus.",
         'TXT_EXTCAL_OPTIMIZE_DATE'                 => "essayer d'optimiser la sortie de la date (par exemple l'abandon date de fin si ce est le m&ecirc;me jour)",
         'TXT_EXTCAL_VERIFY_PEER'                => "v&eacut;rification des certificates ssl pour les connexions https (risque de s&eacut;curit&eacut; quand d&eacut;coch&eacut;e)",
+        'TXT_EXTCAL_KEEP_TODAYS_EVENTS'                => "vos ev&egrave;nementes se sont &eacut;coul&eacut;s jusqu'&agrave; minuit",
+        'TXT_EXTCAL_TIME_OFFSET'                => "correction de l'heure du serveur en quelques secondes",
 
 );
 

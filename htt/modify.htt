@@ -52,6 +52,16 @@
 </tr>
 
 
+<tr{DISPLAY_ADVANCED}>
+        <td align="left">
+                {TXT_EXTCAL_TIME_OFFSET}:
+        </td>
+        <td style="text-align: right;">
+                <input type="text" name="time_offset" value="{MOD_EXTCAL_TIME_OFFSET}" style="width: 200px; margin-top: 5px;" />
+        </td>
+</tr>
+
+
 <tr>
         <td align="left">
                 {TXT_EXTCAL_DATEFORMAT}:
@@ -187,6 +197,8 @@
                        <input type="checkbox" name="optimize_date" value="optimize_date" {MOD_EXTCAL_OPTIMIZE_DATE}><br />
                        {TXT_EXTCAL_MIDNIGHT_FIX}
                        <input type="checkbox" name="midnight_fix" value="midnight_fix" {MOD_EXTCAL_MIDNIGHT_FIX}><br />
+                       {TXT_EXTCAL_KEEP_TODAYS_EVENTS}
+                       <input type="checkbox" name="keep_todays_events" value="keep_todays_events" {MOD_EXTCAL_KEEP_TODAYS_EVENTS}><br />
                        {TXT_EXTCAL_VERIFY_PEER}
                        <input type="checkbox" name="verify_peer" value="verify_peer" {MOD_EXTCAL_VERIFY_PEER}>
 </p>

@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.0.0
+ * @version         1.0.9
  * @authors         Martin Hecht
- * @copyright       2004-2015, Website Baker Org. e.V.
+ * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -82,7 +82,9 @@ $query="SELECT "
         . " `date_template`,"
         . " `optimize_date`,"
         . " `midnight_fix`, "
-        . " `verify_peer` "
+        . " `verify_peer`,"
+        . " `keep_todays_events`,"
+        . " `time_offset` "
         . " FROM `".TABLE_PREFIX."mod_extcal`"
         . " WHERE `section_id` = '$section_id'";
 
@@ -182,6 +184,13 @@ $verify_peer = $content['verify_peer'];
 if($verify_peer != 0) $verify_peer="checked";
         else $verify_peer="";
 
+$keep_todays_events = $content['keep_todays_events'];
+if($keep_todays_events != 0) $keep_todays_events="checked";
+        else $keep_todays_events="";
+
+$time_offset = intval($content['time_offset']) or $time_offset = 0;
+
+
 // calculate cache size
 $list = glob(dirname(__FILE__).'/cache/*.ics'); 
 $dir_size = 0;
@@ -222,7 +231,9 @@ $template->set_var(
                 'TXT_EXTCAL_DATE_TEMPLATE'                        => $LANG['backend']['TXT_EXTCAL_DATE_TEMPLATE'],
                 'TXT_EXTCAL_OPTIMIZE_DATE'                        => $LANG['backend']['TXT_EXTCAL_OPTIMIZE_DATE'],
                 'TXT_EXTCAL_MIDNIGHT_FIX'                        => $LANG['backend']['TXT_EXTCAL_MIDNIGHT_FIX'],
-                'TXT_EXTCAL_VERIFY_PEER'                                => $LANG['backend']['TXT_EXTCAL_VERIFY_PEER'],
+                'TXT_EXTCAL_VERIFY_PEER'                        => $LANG['backend']['TXT_EXTCAL_VERIFY_PEER'],
+                'TXT_EXTCAL_KEEP_TODAYS_EVENTS'                        => $LANG['backend']['TXT_EXTCAL_KEEP_TODAYS_EVENTS'],
+                'TXT_EXTCAL_TIME_OFFSET'                        => $LANG['backend']['TXT_EXTCAL_TIME_OFFSET'],
                 'DISPLAY_ADVANCED'                                => $display_advanced,
                 'ADVANCED'                                        => $advanced,
                 'ADVANCED_BUTTON'                                => $advanced_button,
@@ -255,6 +266,8 @@ $template->set_var(
                 'MOD_EXTCAL_OPTIMIZE_DATE'                        => $optimize_date,
                 'MOD_EXTCAL_MIDNIGHT_FIX'                        => $midnight_fix,
                 'MOD_EXTCAL_VERIFY_PEER'                        => $verify_peer,
+                'MOD_EXTCAL_KEEP_TODAYS_EVENTS'                        => $keep_todays_events,
+                'MOD_EXTCAL_TIME_OFFSET'                        => $time_offset,
                 'TEXT_SAVE'                                        => $TEXT['SAVE'],
                 'TEXT_CANCEL'                                        => $TEXT['CANCEL'],
                 'FTAN'                                                => $admin->getFTAN()

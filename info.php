@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.0.0
+ * @version         1.0.9
  * @authors         Martin Hecht
- * @copyright       2004-2015, Website Baker Org. e.V.
+ * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -16,6 +16,15 @@
 
 /*
  *        CHANGELOG
+ *        1.0.9        2016-02-07        - add settings array to the user functions
+ *        1.0.8        2016-02-05        - allow to add an offset to the server time 
+ *        1.0.7        2016-02-04        - another fix for 12/24h handling
+ *        1.0.6        2016-02-04        - set up time zone before evaluating starttime
+ *        1.0.5        2016-02-03        - suppress error message for empty calendars
+ *        1.0.4        2016-02-03        - allow to hide events that already have ended earlier today
+ *        1.0.3        2016-01-30        - further improve link example in user functions
+ *        1.0.2        2016-01-29        - do not change already html-formatted links
+ *        1.0.1        2016-01-29        - do not display events after defined endtime
  *        1.0.0        2016-01-28        - add user function hooks
  *        0.9.9        2016-01-26        - support digest authentication for get requests
  *        0.9.8        2016-01-25        - set user agent to Extcal instead of real one
@@ -96,7 +105,7 @@ if(!defined('WB_PATH')) {
 $module_directory        = 'extcal';
 $module_name                = 'External Calendar';
 $module_function        = 'page';
-$module_version                = '1.0.0';
+$module_version                = '1.0.9';
 $module_platform        = 'WebsiteBaker 2.8.x';
 $module_author                = 'Martin Hecht';
 $module_license                = 'GNU General Public License';

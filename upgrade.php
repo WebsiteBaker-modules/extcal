@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.0.0
+ * @version         1.0.9
  * @authors         Martin Hecht
- * @copyright       2004-2015, Website Baker Org. e.V.
+ * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -55,7 +55,9 @@ $MY_DB_FIELDS=array(
         "date_template"                        => "TEXT NOT NULL DEFAULT ''",        
         "optimize_date"                 => "INT DEFAULT '1'",                
         "midnight_fix"                         => "INT DEFAULT '1'",                
-        "verify_peer"                         => "INT DEFAULT '1'"                
+        "verify_peer"                         => "INT DEFAULT '1'",
+        "keep_todays_events"                 => "INT DEFAULT '1'",
+        "time_offset"                         => "INT DEFAULT '0'"
 );
 
 
@@ -206,6 +208,8 @@ while( $fetch_content = $get_content->fetchRow() ) {
         $optimize_date = $fetch_content['optimize_date'];
         $midnight_fix = $fetch_content['midnight_fix'];
         $verify_peer = $fetch_content['verify_peer'];
+        $keep_todays_events = $fetch_content['keep_todays_events'];
+        $time_offset = $fetch_content['time_offset'];
 
 
         // initialize new fields
@@ -251,6 +255,12 @@ while( $fetch_content = $get_content->fetchRow() ) {
 
         if($new_fields["verify_peer"]==1)
                 $verify_peer="1";     
+
+        if($new_fields["keep_todays_events"]==1)
+                $keep_todays_events="1";     
+
+        if($new_fields["time_offset"]==1)
+                $time_offset="0";     
 
         // if entry_template is new tranform empty strings to default settings
         if($TRANSFORM_TO_TEMPLATE) {

@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.0.0
+ * @version         1.0.9
  * @authors         Martin Hecht
- * @copyright       2004-2015, Website Baker Org. e.V.
+ * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -61,7 +61,7 @@ L'utilizo di un https connessione &egrave; raccomandato. Nelle opzioni avanzate 
 
 <P> Se il percorso termina sul &quot; / &quot; l'URL viene interpretato come CalDAV - altrimenti si presume che l'URL punta a un file iCal. Le linee che iniziano con '&#35;' sono considerati essere commentata.</ P>
 
-<P> Gli appuntamenti del calendario possono essere limitati nel senso di quanti giorni in futuro devono essere visualizzati. Inoltre, &egrave; possibile configurare un limite per il numero di appuntamenti per mostrare. Se si inserisce uno zero per uno di questi limiti, questo significa &quot; illimitata &quot;. </ P>
+<P> Gli appuntamenti del calendario possono essere limitati nel senso di quanti giorni in futuro devono essere visualizzati. Inoltre, &egrave; possibile configurare un limite per il numero di appuntamenti per mostrare. Se si inserisce uno zero per uno di questi limiti, questo significa &quot; illimitata &quot;. Nelle opzioni avanzate &egrave; possibile specificare se le date trascorsi devono essere indicate fino a mezzanotte prima di scomparire. &Egrave; inoltre possibile regolare un offset in secondi, che si applica per l'ora del server corrente prima di copararlo contro gli appuntamenti.</ P>
 
 <P>
  Il fuso orario in base al quale vengono interpretate le date nei 
@@ -130,6 +130,8 @@ $LANG ['backend'] = array(
         'TXT_EXTCAL_DATE_TEMPLATE'         => "nel modello seguente &egrave; possibile mettere a punto l'aspetto della data. I possibili segnaposto sono {START_DATE}, {END_DATE}, {START_TIME}, {END_TIME} e {DATE_SEPARATOR}. Quest'ultimo e i blocchi di apertura e chiusura, che sono avvolti attorno al risultato di questo modello, sono definiti sopra. ",
         'TXT_EXTCAL_OPTIMIZE_DATE'         => "cercare di ottimizzare l'uscita data (ad esempio cadere data di fine, se &egrave; lo stesso giorno)",
         'TXT_EXTCAL_VERIFY_PEER'        => "verificare certificati ssl per connessioni https (risicho per la sicurezza se non controllata)",
+        'TXT_EXTCAL_KEEP_TODAYS_EVENTS'        => "mantenere gli appuntamenti trascorsi fino a mezzanotte",
+        'TXT_EXTCAL_TIME_OFFSET'                => "correzione del tempo del server in secondi",
 
 );
 

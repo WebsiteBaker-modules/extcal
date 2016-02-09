@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.0.0
+ * @version         1.0.9
  * @authors         Martin Hecht
- * @copyright       2004-2015, Website Baker Org. e.V.
+ * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -41,7 +41,8 @@ Eine https-Verbindung ist empfehlenswert. In den erweiterten Optionen kann die p
 
 <p>Endet der Pfad auf &quot;/&quot; wird die URL als CalDAV interpretiert - wenn nicht, wird die URL als ical-File interpretiert. Zeilen, die mit '&#35;' beginnen, gelten als auskommentiert.</p>
 
-<p>Die dargestellten Termine k&ouml;nnen begrenzt werden, wie viele Tage sie in der Zukunft liegen d&uuml;rfen. Auch die Anzahl der Termine kann begrenzt werden. Wird f&uuml;r einen der beiden Werte Null eingetragen, so bedeutet das &quot;unbegrenzt&quot;.</p>
+<p>Die dargestellten Termine k&ouml;nnen begrenzt werden, wie viele Tage sie in der Zukunft liegen d&uuml;rfen. Auch die Anzahl der Termine kann begrenzt werden. Wird f&uuml;r einen der beiden Werte Null eingetragen, so bedeutet das &quot;unbegrenzt&quot;. In den erweiterten Optionen kann man festlegen, ob bereits verstrichene Termine noch bis Mitternacht dargestellt werden sollen bevor sie verschwinden. Sie k&ouml;nnen auch einen Offset in Sekunden angeben, der grunds&auml;tzlich auf die aktuelle Serverzeit angewandt wird, bevor sie mit einem Kalendereintrag verglichen wird.
+</p>
 
 <p>Die Zeitzone, mit der die Zeiten in den Kalendern interpretiert werden sollen, kann ebenfalls im Backend eingestellt werden. Dies ist insbesondere f&uuml;r die korrekte Darstellung von Terminen &uuml;ber die Umstellung zwischen Sommer- und Winterzeit hinweg. 
 W&auml;hlen Sie hierzu die Einstellung f&uuml;r Ihr Land und nicht &quot;UTC+X Stunden&quot;, da diese Einstellung keine Sommer- und Winterzeitumstellung kennt. Sie k&ouml;nnen das Feld auch leer lassen, dann versucht das Modul die Zeitzone anhand der globalen Spracheinstellung in WebsiteBaker zu ermitteln (das sollte derzeit f&uuml;r Deutschland, England, Frankreich und Italien funktionieren). Um ein beliebiges Feld auf die Default-Einstellungen zur&uuml;ckzusetzen, k&ouml;nnen Sie einfach &quot;{DEFAULT}&quot; eingeben und die Enistellungen speichern.</p>
@@ -107,7 +108,8 @@ $LANG['backend'] = array(
         'TXT_EXTCAL_OPTIMIZE_DATE'                => "versuche die Ausgabe des Datums zu optimieren (z.B. das Enddatum weglassen, wenn es am gleichen Tag wie der Anfang des Termins ist)",
         'TXT_EXTCAL_MIDNIGHT_FIX'                => "quetsche Termine, die um Mitternacht enden noch in den Vortag",
         'TXT_EXTCAL_VERIFY_PEER'                => "&Uuml;berpr&uuml;fe ssl-Zertifikate f&uuml;r https-Verbindungen (Sicherheitsrisiko wenn deaktiviert)",
-        
+        'TXT_EXTCAL_KEEP_TODAYS_EVENTS'                => "behalte verstrichene Termine bis Mitternacht",
+        'TXT_EXTCAL_TIME_OFFSET'                => "Korrektur der Serverzeit in Sekunden",
 );
 
 

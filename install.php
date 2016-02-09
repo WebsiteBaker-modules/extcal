@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.0.0
+ * @version         1.0.9
  * @authors         Martin Hecht
- * @copyright       2004-2015, Website Baker Org. e.V.
+ * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -61,6 +61,8 @@ if(defined('WB_URL'))
                 . " `optimize_date` INT DEFAULT '1',"
                 . " `midnight_fix` INT DEFAULT '1',"
                 . " `verify_peer` INT DEFAULT '1',"
+                . " `keep_todays_events` INT DEFAULT '1',"
+                . " `time_offset` INT DEFAULT '0',"
                 . " PRIMARY KEY ( `section_id` )"
                 . " ) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_unicode_ci'";
         $database->query($mod_extcal);

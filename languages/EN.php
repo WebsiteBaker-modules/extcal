@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.0.0
+ * @version         1.0.9
  * @authors         Martin Hecht
- * @copyright       2004-2015, Website Baker Org. e.V.
+ * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -39,7 +39,8 @@ Using an https-connection is recommended. In the advanced options you can disabl
 
 <p>If the path terminates on &quot;/&quot; the URL is interpreted as CalDAV - otherwise it is assumed that the URL points to an ical-file. Lines starting with '&#35;' are considered commented-out.</p>
 
-<p>The calendar entries can be limited in the sense of how many days in future shall be displayed. Also, you can configure a limit for the number of appointments to show. If you enter a zero for one of these limits, this means  &quot;unlimited&quot;.</p>
+<p>The calendar entries can be limited in the sense of how many days in future shall be displayed. Also, you can configure a limit for the number of appointments to show. If you enter a zero for one of these limits, this means  &quot;unlimited&quot;. In the advanced options you can specify whether elapsed dates shall be shown until midnight before they disappear. You can also adjust an offset in seconds, which is applied to the current server time before comparing it to any calendar entry.
+</p>
 
 <p>The timezone based on which the dates in the calenders are interpreted, can be configured in the backend, too. This is especially important for a correct handling of appointments across daylight-savings. Choose the correct timezone for your country. Do not use something like &quot;UTC+X hours&quot;, because this setting would not be aware of any daylight savings. You can also leave the field empty, then the module tries to determine the time zone from the language global settings of WebsiteBaker (this should work for Germany, England, France and Italy, currently). To reset any of the fields, just enter &quot;{DEFAULT}&quot; and save the settings.</p>
 
@@ -97,6 +98,8 @@ $LANG['backend'] = array(
         'TXT_EXTCAL_OPTIMIZE_DATE'                => "try to optimize the date output (e.g. drop end date if it is on the same day)",
         'TXT_EXTCAL_MIDNIGHT_FIX'                => "squeeze appointments ending at midnight into the day before",
         'TXT_EXTCAL_VERIFY_PEER'                => "verify ssl-certificates for https-connections (security risk if unchecked)",
+        'TXT_EXTCAL_KEEP_TODAYS_EVENTS'                => "keep elapsed appointments until midnight",
+        'TXT_EXTCAL_TIME_OFFSET'                => "correction of the server time in seconds",
 
 );
 
