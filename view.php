@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.0.9
+ * @version         1.1.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -272,7 +272,9 @@ foreach ($calendars as $ICS){
                         $start = $ev->getStart();
                         $freq = $ev->getFrequency();
                         if ($freq->firstOccurrence() == $start)
-                                $data[] = $curr_Evt;
+                            if(($start < strtotime($endtime) && ($endtime!=0)) &&
+                                ($curr_Evt['end']>strtotime($starttime)))
+                                    $data[] = $curr_Evt;
                         while ( $next < strtotime($endtime) || $endtime==0 ){
                                 $next = $freq->nextOccurrence($start);
                                 if (!$next or $count >= 1000) break;
@@ -281,11 +283,14 @@ foreach ($calendars as $ICS){
                                 if(($start >= strtotime($endtime)) && ($endtime!=0)) break;
                                 $curr_Evt["start"] = $start;
                                 $curr_Evt["end"] = $start + $ev->getDuration();
-                                $data[] = $curr_Evt;
+                                if(($start < strtotime($endtime) && ($endtime!=0)) &&
+                                    ($curr_Evt['end']>strtotime($starttime)))
+                                        $data[] = $curr_Evt;
                         }
                 } else {
                         $start = $ev->getStart();
-                        if($start < strtotime($endtime) && ($endtime!=0))
+                        if(($start < strtotime($endtime) && ($endtime!=0)) &&
+                            ($curr_Evt['end']>strtotime($starttime)))
                                 $data[] = $curr_Evt;
                 }
         }

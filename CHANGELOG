@@ -1,6 +1,7 @@
 
 /*
  *        CHANGELOG
+ *        1.1.0        2016-02-11        - correctly handle and prefilter reoccurring events 
  *        1.0.9        2016-02-07        - add settings array to the user functions
  *        1.0.8        2016-02-05        - allow to add an offset to the server time 
  *        1.0.7        2016-02-04        - another fix for 12/24h handling
