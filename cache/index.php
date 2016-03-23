@@ -4,7 +4,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.0
+ * @version         1.1.3
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -14,8 +14,6 @@
  * @requirements    PHP 5.3 and higher and Curl 
  *
  **/
-// prevent directory listings
 
 header("Location: ../../../index.php");
 
-?>

@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.0
+ * @version         1.1.3
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -16,6 +16,9 @@
 
 /*
  *        CHANGELOG
+ *        1.1.3        2016-03-22        - fix html special char notation for acute accents
+ *        1.1.2        2016-02-25        - another fix for completely empty calendars
+ *        1.1.1        2016-02-25        - realign code: wrap long lines and set tab width=4
  *        1.1.0        2016-02-11        - correctly handle and prefilter reoccurring events 
  *        1.0.9        2016-02-07        - add settings array to the user functions
  *        1.0.8        2016-02-05        - allow to add an offset to the server time 
@@ -103,14 +106,14 @@ if(!defined('WB_PATH')) {
 /* -------------------------------------------------------- */
 
 
-$module_directory        = 'extcal';
-$module_name                = 'External Calendar';
-$module_function        = 'page';
-$module_version                = '1.1.0';
-$module_platform        = 'WebsiteBaker 2.8.x';
-$module_author                = 'Martin Hecht';
-$module_license                = 'GNU General Public License';
-$module_description        = 'The module External Calendar allows you to include external calendars (DavCAL or ics) into a WebsiteBaker page.';
+$module_directory      = 'extcal';
+$module_name           = 'External Calendar';
+$module_function       = 'page';
+$module_version        = '1.1.3';
+$module_platform       = 'WebsiteBaker 2.8.x';
+$module_author         = 'Martin Hecht';
+$module_license        = 'GNU General Public License';
+$module_description    = 'The module External Calendar allows you to include external calendars (DavCAL or ics) into a WebsiteBaker page.';
 
 
 
