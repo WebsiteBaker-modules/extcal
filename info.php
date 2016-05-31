@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.3
+ * @version         1.1.4
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -16,6 +16,7 @@
 
 /*
  *        CHANGELOG
+ *        1.1.4        2016-04-20        - prepare for sql strict and add section_id to user func calls
  *        1.1.3        2016-03-22        - fix html special char notation for acute accents
  *        1.1.2        2016-02-25        - another fix for completely empty calendars
  *        1.1.1        2016-02-25        - realign code: wrap long lines and set tab width=4
@@ -109,7 +110,7 @@ if(!defined('WB_PATH')) {
 $module_directory      = 'extcal';
 $module_name           = 'External Calendar';
 $module_function       = 'page';
-$module_version        = '1.1.3';
+$module_version        = '1.1.4';
 $module_platform       = 'WebsiteBaker 2.8.x';
 $module_author         = 'Martin Hecht';
 $module_license        = 'GNU General Public License';

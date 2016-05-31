@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.3
+ * @version         1.1.4
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -324,7 +324,7 @@ foreach($data as $key => $entry){
 
     // user function hook to modify values of the entry before processing
     if(function_exists('extcal_user_prepare_entry'))
-        $entry=extcal_user_prepare_entry($entry);
+        $entry=extcal_user_prepare_entry($entry,$fetch_content,$section_id);
         
     if((($entry["start"]>=strtotime($starttime))||($entry["end"]>=strtotime($starttime)))
       &&(!array_key_exists("class",$entry["data"])
@@ -423,7 +423,7 @@ foreach($data as $key => $entry){
         
         // user function hook to process the individual place holders
         if(function_exists('extcal_user_process_placeholders'))
-            $placeholders=extcal_user_process_placeholders($placeholders);
+            $placeholders=extcal_user_process_placeholders($placeholders,$fetch_content,$section_id);
         
             
         foreach($placeholders as $template_key => $template_value)
@@ -432,7 +432,7 @@ foreach($data as $key => $entry){
 
         // user function hook to postprocess the whole entry
         if(function_exists('extcal_user_postprocess_entry'))
-            $output_string=extcal_user_postprocess_entry($output_string);
+            $output_string=extcal_user_postprocess_entry($output_string,$fetch_content,$section_id);
 
         echo $output_string."\n";
         $counter++;

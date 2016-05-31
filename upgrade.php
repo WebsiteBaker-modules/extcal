@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.3
+ * @version         1.1.4
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -30,29 +30,29 @@ $example_url=WB_URL."/modules/extcal/calendars/example.ics";
 // these fields should be there - add them to the array and the upgrade script creates them
 
 $MY_DB_FIELDS=array(
-    "cal_urls"                  => "TEXT NOT NULL DEFAULT '".$example_url."'",
+    "cal_urls"                  => "TEXT NOT NULL",
     "max_entries"               => "INT DEFAULT '0'",
     "max_days"                  => "INT DEFAULT '0'",
-    "time_zone"                 => "TEXT NOT NULL DEFAULT ''",
-    "dateformat"                => "TEXT NOT NULL DEFAULT ''",        
-    "date_end"                  => "TEXT NOT NULL DEFAULT ''",         
-    "section_start"             => "TEXT NOT NULL DEFAULT ''",        
-    "section_end"               => "TEXT NOT NULL DEFAULT ''",        
+    "time_zone"                 => "TEXT NOT NULL",
+    "dateformat"                => "TEXT NOT NULL",        
+    "date_end"                  => "TEXT NOT NULL",         
+    "section_start"             => "TEXT NOT NULL",        
+    "section_end"               => "TEXT NOT NULL",        
     "enable_cache"              => "INT DEFAULT '1'",        
     "refresh_time"              => "INT DEFAULT '0'", 
     "cache_time"                => "INT DEFAULT '0'", 
-    "description_end"           => "TEXT NOT NULL DEFAULT ''",
-    "entry_template"            => "TEXT NOT NULL DEFAULT ''",
-    "description_start"         => "TEXT NOT NULL DEFAULT ''",
-    "location_start"            => "TEXT NOT NULL DEFAULT ''",
-    "location_end"              => "TEXT NOT NULL DEFAULT ''",
-    "title_start"               => "TEXT NOT NULL DEFAULT ''",
-    "title_end"                 => "TEXT NOT NULL DEFAULT ''",
-    "date_start"                => "TEXT NOT NULL DEFAULT ''",
-    "confidential_text"         => "TEXT NOT NULL DEFAULT ''",
-    "timeformat"                => "TEXT NOT NULL DEFAULT ''",     
-    "date_separator"            => "TEXT NOT NULL DEFAULT ''",    
-    "date_template"             => "TEXT NOT NULL DEFAULT ''",    
+    "description_end"           => "TEXT NOT NULL",
+    "entry_template"            => "TEXT NOT NULL",
+    "description_start"         => "TEXT NOT NULL",
+    "location_start"            => "TEXT NOT NULL",
+    "location_end"              => "TEXT NOT NULL",
+    "title_start"               => "TEXT NOT NULL",
+    "title_end"                 => "TEXT NOT NULL",
+    "date_start"                => "TEXT NOT NULL",
+    "confidential_text"         => "TEXT NOT NULL",
+    "timeformat"                => "TEXT NOT NULL",     
+    "date_separator"            => "TEXT NOT NULL",    
+    "date_template"             => "TEXT NOT NULL",    
     "optimize_date"             => "INT DEFAULT '1'",        
     "midnight_fix"              => "INT DEFAULT '1'",        
     "verify_peer"               => "INT DEFAULT '1'",
@@ -64,16 +64,16 @@ $MY_DB_FIELDS=array(
 // when fields become obsolete, just copy them from above into this array
 
 $MY_OBSOLETE_DB_FIELDS=array(
-    "location"                  => "TEXT NOT NULL DEFAULT ''",
-    "location_separator"        => "TEXT NOT NULL DEFAULT ''",
-    "entry_start"               => "TEXT NOT NULL DEFAULT ''",
-    "entry_end"                 => "TEXT NOT NULL DEFAULT ''",
-    "confidential_separator"    => "TEXT NOT NULL DEFAULT ''",
-    "description_separator"     => "TEXT NOT NULL DEFAULT ''",
+    "location"                  => "TEXT NOT NULL",
+    "location_separator"        => "TEXT NOT NULL",
+    "entry_start"               => "TEXT NOT NULL",
+    "entry_end"                 => "TEXT NOT NULL",
+    "confidential_separator"    => "TEXT NOT NULL",
+    "description_separator"     => "TEXT NOT NULL",
     "show_location"             => "INT DEFAULT '1'", 
     "show_description"          => "INT DEFAULT '0'", 
-    "allday_dateformat"         => "TEXT NOT NULL DEFAULT ''",     
-    "multiday_separator"        => "TEXT NOT NULL DEFAULT ''",    
+    "allday_dateformat"         => "TEXT NOT NULL",     
+    "multiday_separator"        => "TEXT NOT NULL",    
 );
 
 

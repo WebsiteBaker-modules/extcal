@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.3
+ * @version         1.1.4
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -30,7 +30,7 @@ if(!defined('WB_PATH')) {
 /* 
 // This is an example code which puts a headline for each month into the list
 
-function extcal_user_prepare_entry($entry,$settings=null){
+function extcal_user_prepare_entry($entry,$settings=null,$section_id=NULL){
     global $extcal_current_month;
     $entry_month=date("F Y",$entry["start"]);
     if($entry_month!=$extcal_current_month && $entry["end"]>=strtotime(date("Ymd"))){
