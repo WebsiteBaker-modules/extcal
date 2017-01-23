@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.4
+ * @version         1.1.8
  * @authors         Martin Hecht
- * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
+ * @copyright       (c) 2015 - 2017, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -119,7 +119,7 @@ Inhalt f&uuml;r den {DATE} Platzhalter.</p>
 der aus dem jeweiligen Kalendereintrag stammt und einem Formatierungs-Baustein als 
 Pr&auml;fix und einem als Suffix.
 Das gilt f&uuml;r den Titel des Kalendereintrags  ({TITLE}), den Ort ({LOCATION}) und die 
-detaillierte Beschreibung  ({DESCRIPTION}).
+detaillierte Beschreibung ({DESCRIPTION}) und Kategorien ({CATEGORIES}).
 Wenn eines der Felder leer ist, werden auch die Pr&auml;fix- und 
 Suffix-Formatierungs-Bausteine unterdr&uuml;ckt. Wenn Sie dieses Verhalten vermeiden 
 wollen, geben Sie einfach ein Leerzeichen als Titel, Ort bzw. Beschreibung ein.
@@ -197,7 +197,8 @@ $LANG['backend'] = array(
     'TXT_EXTCAL_ENTRY_TEMPLATE'     => "im folgenden Template k&ouml;nnen Sie das"
                                      . " Erscheinungsbild  eines Kalendereintrags"
                                      . " festlegen. M&ouml;gliche Platzhalter sind"
-                                     . " {DATE}, {TITLE}, {LOCATION} und {DESCRIPTION}."
+                                     . " {DATE}, {TITLE}, {LOCATION}, {CATEGORIES}"
+                                     . " und {DESCRIPTION}."
                                      . " Anstelle des Datums k&ouml;nnen Sie hier auch"
                                      . " {START_DATE}, {END_DATE}, {START_TIME},"
                                      . " {END_TIME} und {DATE_SEPARATOR} verwenden."
@@ -250,3 +251,27 @@ $LANG['backend'] = array(
 $LANG['frontend']['MOD_EXTCAL_TIMEZONE']    = 'Europe/Berlin';
 $LANG['frontend']['MOD_EXTCAL_DATEFORMAT']  = 'd.m.Y';
 $LANG['frontend']['MOD_EXTCAL_TIMEFORMAT']  = 'H:i';
+
+$LANG['categories'] = array(
+    'anniversary' => 'Jahrestag',
+    'birthday' => 'Geburtstag',
+    'business' => 'Gesch&auml;ftstermin',
+    'calls' => 'Anrufe',
+    'clients' => 'Klienten',
+    'competition' => 'Wettbewerb',
+    'customer' => 'Kunden',
+    'favorites' => 'Favoriten',
+    'follow up' => 'Folgetermine',
+    'gifts' => 'Geschenke',
+    'holidays' => 'Ferien',
+    'ideas' => 'Ideen',
+    'issues' => 'Probleme',
+    'miscellaneous' => 'Sonstiges',
+    'personal' => 'Pers&ouml;nliches',
+    'projects' => 'Projekte',
+    'public holiday' => 'gesetzl. Feiertage',
+    'status' => 'Status',
+    'suppliers' => 'Lieferanten',
+    'travel' => 'Reisen',
+    'vacation' => 'Urlaub'
+);

@@ -1,6 +1,10 @@
 
 /*
  *        CHANGELOG
+ *        1.1.8        2017-01-23        - Repair upgrade script
+ *        1.1.7        2017-01-23        - Translate default categories into current frontend language
+ *        1.1.6        2017-01-23        - fix for wrong evaluation of isWholeDay in SG_ical
+ *        1.1.5        2017-01-05        - support categories field, thanks to maik for suggesting
  *        1.1.4        2016-04-20        - prepare for sql strict and add section_id to user func calls
  *        1.1.3        2016-03-22        - fix html special char notation for acute accents
  *        1.1.2        2016-02-25        - another fix for completely empty calendars

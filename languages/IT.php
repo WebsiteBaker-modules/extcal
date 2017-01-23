@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.4
+ * @version         1.1.8
  * @authors         Martin Hecht
- * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
+ * @copyright       (c) 2015 - 2017, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -110,7 +110,8 @@ un blocco formattazione inizio e una di fine. Ecco come il {DATE} blocco viene g
 <P> Gli altri segnaposto sono pi&ugrave; semplici. Essi consistono essenzialmente di un 
 valore che viene dal appuntamento e un blocco formattazione prefisso e un blocco 
 formattazione suffisso. Questo vale per il titolo del appuntamento ({TITLE}), la 
-posizione ({LOCATION}), e la descrizione dettagliata ({DESCRIPTION}).
+posizione ({LOCATION}), la descrizione dettagliata ({DESCRIPTION}) e categorie ({CATEGORIES}).
+
 Se uno dei campi &egrave; vuoto, anche il blocco formattazione prefisso e suffisso 
 vengono soppressi. Se si vuole evitare questo, basta inserire uno spazio nel titolo, la 
 posizione o la descrizione, rispettivamente.
@@ -183,7 +184,8 @@ $LANG ['backend'] = array(
     'TXT_EXTCAL_ENTRY_TEMPLATE'     => "nel modello seguente &egrave; possibile"
                                      . " impostare l'aspetto di ogni voce del calendario"
                                      . " possibile segnaposto sono {DATE}, {TITLE},"
-                                     . " {LOCATION} e {DESCRIPTION}. Invece de la data"
+                                     . " {LOCATION}, {DESCRIPTION} et {CATEGORIES}."
+                                     . " Invece de la data"
                                      . " &egrave; anche possibile utilizzare"
                                      . " {START_DATE}, {END_DATE}, {START_TIME},"
                                      . " {END_TIME} e {DATE_SEPARATOR} qui. L'apertura e"
@@ -230,3 +232,28 @@ $LANG ['backend'] = array(
 $LANG['frontend']['MOD_EXTCAL_TIMEZONE']    = 'Europe/Rome';
 $LANG['frontend']['MOD_EXTCAL_DATEFORMAT']  = 'd.m.Y';
 $LANG['frontend']['MOD_EXTCAL_TIMEFORMAT']  = 'H:i';
+
+$LANG['categories'] = array(
+    'anniversary' => 'Anniversario',
+    'birthday' => 'Compleanno',
+    'business' => 'Attivit&agrave; commerciale',
+    'calls' => 'Chiamte',
+    'clients' => 'Clienti',
+    'competition' => 'Concorrenza',
+    'customer' => 'Cliente',
+    'favorites' => 'Preferiti',
+    'follow up' => 'Seguito',
+    'gifts' => 'Regali',
+    'holidays' => 'Vacanze',
+    'ideas' => 'Idee',
+    'issues' => 'Problemi',
+    'miscellaneous' => 'Miscellaneo',
+    'personal' => 'Personale',
+    'projects' => 'Progetti',
+    'public holiday' => 'Festa nazionale',
+    'status' => 'Stato',
+    'suppliers' => 'Fornitori',
+    'travel' => 'Viaggio',
+    'vacation' => 'Vacanza'
+);
+

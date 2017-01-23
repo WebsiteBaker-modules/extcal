@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.4
+ * @version         1.1.8
  * @authors         Martin Hecht
- * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
+ * @copyright       (c) 2015 - 2017, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -16,6 +16,10 @@
 
 /*
  *        CHANGELOG
+ *        1.1.8        2017-01-23        - Repair upgrade script
+ *        1.1.7        2017-01-23        - Translate default categories into current frontend language
+ *        1.1.6        2017-01-23        - fix for wrong evaluation of isWholeDay in SG_ical
+ *        1.1.5        2017-01-05        - support categories field, thanks to maik for suggesting
  *        1.1.4        2016-04-20        - prepare for sql strict and add section_id to user func calls
  *        1.1.3        2016-03-22        - fix html special char notation for acute accents
  *        1.1.2        2016-02-25        - another fix for completely empty calendars
@@ -102,6 +106,7 @@
 // Must include code to stop this file being accessed directly
 if(!defined('WB_PATH')) {
         // Stop this file being access directly
+        if(!headers_sent()) header("Location: ../index.php",TRUE,301);
         die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
 }
 /* -------------------------------------------------------- */
@@ -110,7 +115,7 @@ if(!defined('WB_PATH')) {
 $module_directory      = 'extcal';
 $module_name           = 'External Calendar';
 $module_function       = 'page';
-$module_version        = '1.1.4';
+$module_version        = '1.1.8';
 $module_platform       = 'WebsiteBaker 2.8.x';
 $module_author         = 'Martin Hecht';
 $module_license        = 'GNU General Public License';

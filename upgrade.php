@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.4
+ * @version         1.1.8
  * @authors         Martin Hecht
- * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
+ * @copyright       (c) 2015 - 2017, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -19,6 +19,7 @@
 // Must include code to stop this file being accessed directly
 if(!defined('WB_PATH')) {
         // Stop this file being access directly
+        if(!headers_sent()) header("Location: ../index.php",TRUE,301);
         die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
 }
 /* -------------------------------------------------------- */
@@ -171,16 +172,26 @@ while( $fetch_content = $get_content->fetchRow() ) {
     
     // this is basically from view.php
 
-    $location = $fetch_content['location'];
-    $location_separator = $fetch_content['location_separator'];
-    $entry_start = $fetch_content['entry_start'];
-    $entry_end = $fetch_content['entry_end'];
-    $confidential_separator = $fetch_content['confidential_separator'];
-    $description_separator = $fetch_content['description_separator'];
-    $show_location = $fetch_content['show_location'];
-    $show_description = $fetch_content['show_description'];
-    $allday_dateformat = $fetch_content['allday_dateformat'];
-    $multiday_separator = $fetch_content['multiday_separator'];
+    $location = ($fields_to_save['location']=='1')
+                 ?$fetch_content['location']:'';
+    $location_separator = ($fields_to_save['location_separator']=='1')
+                           ?$fetch_content['location_separator']:'';
+    $entry_start = ($fields_to_save['entry_start']=='1')
+                    ?$fetch_content['entry_start']:'';
+    $entry_end = ($fields_to_save['entry_end']=='1')
+                  ?$fetch_content['entry_end']:'';
+    $confidential_separator = ($fields_to_save['confidential_separator']=='1')
+                               ?$fetch_content['confidential_separator']:'';
+    $description_separator = ($fields_to_save['description_separator']=='1')
+                              ?$fetch_content['description_separator']:'';
+    $show_location = ($fields_to_save['show_location']=='1')
+                      ?$fetch_content['show_location']:'';
+    $show_description = ($fields_to_save['show_description']=='1')
+                         ?$fetch_content['show_description']:'';
+    $allday_dateformat = ($fields_to_save['allday_dateformat']=='1')
+                          ?$fetch_content['allday_dateformat']:'';
+    $multiday_separator = ($fields_to_save['multiday_separator']=='1')
+                           ?$fetch_content['multiday_separator']:'';
 
     $cal_urls = $fetch_content['cal_urls'];
     $max_days = $fetch_content['max_days'];
@@ -344,7 +355,7 @@ while( $fetch_content = $get_content->fetchRow() ) {
     if($fields_to_save["location_separator"]==1)
         $location_end=$location_separator;
     
-    if($fields_to_save["confitential_separator"]==1)
+    if($fields_to_save["confidential_separator"]==1)
         $confidential_text=$confidential_separator;
 
     $descr_str="";

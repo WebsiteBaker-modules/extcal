@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.4
+ * @version         1.1.8
  * @authors         Martin Hecht
- * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
+ * @copyright       (c) 2015 - 2017, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -19,6 +19,7 @@
 // Must include code to stop this file being accessed directly
 if(!defined('WB_PATH')) {
         // Stop this file being access directly
+        if(!headers_sent()) header("Location: ../index.php",TRUE,301);
         die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
 }
 /* -------------------------------------------------------- */
@@ -260,15 +261,19 @@ foreach ($calendars as $ICS){
 
     if(is_array($evts) && !empty($evts))
     foreach($evts as $id => $ev) {
+        $ev_start = $ev->getStart();
+        $ev_data = $ev->data;
         $curr_Evt = array(
             "id" => ($id+1),
             "title" => $ev->getProperty('summary'),
-            "start" => $ev->getStart(),
+            "start" => $ev_start,
             "end"   => $ev->getEnd(),
-            "allDay" => $ev->isWholeDay(),
+            "allDay" => (($ev->isWholeDay() && date("H:i",$ev_start)=="00:00" )
+                          || (isset($ev_data["x-microsoft-cdo-alldayevent"]) 
+                             && preg_match("/TRUE/i",$ev_data["x-microsoft-cdo-alldayevent"]))),
             "location" => $ev->getLocation(),
             "description" => $ev->getDescription(),
-            "data" => $ev->data
+            "data" => $ev_data
         );
 
         if (isset($ev->recurrence)) {
@@ -322,6 +327,8 @@ if (file_exists(WB_PATH.'/modules/extcal/user_functions.php'))
 $counter=0;
 foreach($data as $key => $entry){
 
+    $categories='';
+    
     // user function hook to modify values of the entry before processing
     if(function_exists('extcal_user_prepare_entry'))
         $entry=extcal_user_prepare_entry($entry,$fetch_content,$section_id);
@@ -407,6 +414,13 @@ foreach($data as $key => $entry){
             $entry["title"]=$confidential_text;
         }
         
+        if(array_key_exists("categories",$entry["data"])){
+            $categories=$entry["data"]["categories"];
+            if(isset($LANG['categories'][strtolower($categories)])){
+                $categories=$LANG['categories'][strtolower($categories)];
+            }
+        }
+        
         $output_string = $entry_template;
         
         $placeholders = array (
@@ -418,7 +432,8 @@ foreach($data as $key => $entry){
             '{DATE_SEPARATOR}' => (($date_string=="")&&($entry["allDay"]))?"":$date_separator,
             '{LOCATION}'    => $entry["location"],
             '{TITLE}'    => $entry["title"],
-            '{DESCRIPTION}' => $entry["description"]
+            '{DESCRIPTION}' => $entry["description"],
+            '{CATEGORIES}'  => $categories
         );
         
         // user function hook to process the individual place holders

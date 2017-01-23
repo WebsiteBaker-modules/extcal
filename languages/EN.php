@@ -3,9 +3,9 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.4
+ * @version         1.1.8
  * @authors         Martin Hecht
- * @copyright       (c) 2015 - 2016, Martin Hecht (mrbaseman)
+ * @copyright       (c) 2015 - 2017, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
@@ -95,8 +95,8 @@ formatting block. That's how the {DATE} block is generated.</p>
 
 <p> The other place holders are more simple. They basically consist of a value which comes 
 out of the appointment and a prefix and a suffix formatting block. This applies for the 
-title of the entry ({TITLE}), the location ({LOCATION}), and the detailled description 
-({DESCRIPTION}).
+title of the entry ({TITLE}), the location ({LOCATION}), the detailled description 
+({DESCRIPTION}), and categories ({CATEGORIES}).
 
 If one of the fields is empty, also the prefix and suffix formatting block are suppressed. 
 If you want to avoid this, just enter a space character in the title, the location or the 
@@ -235,3 +235,26 @@ $LANG['frontend'] = array(
     
 );
 
+$LANG['categories'] = array(
+    'anniversary' => 'Anniversary',
+    'birthday' => 'Birthday',
+    'business' => 'Business',
+    'calls' => 'Calls',
+    'clients' => 'Clients',
+    'competition' => 'Competition',
+    'customer' => 'Customer',
+    'favorites' => 'Favorites',
+    'follow up' => 'Follow Up',
+    'gifts' => 'Gifts',
+    'holidays' => 'Holidays',
+    'ideas' => 'Ideas',
+    'issues' => 'Issues',
+    'miscellaneous' => 'Miscellaneous',
+    'personal' => 'Personal',
+    'projects' => 'Projects',
+    'public holiday' => 'Public Holiday',
+    'status' => 'Status',
+    'suppliers' => 'Suppliers',
+    'travel' => 'Travel',
+    'vacation' => 'Vacation'
+);
