@@ -3,25 +3,21 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.8
+ * @version         1.1.9
  * @authors         Martin Hecht
- * @copyright       (c) 2015 - 2017, Martin Hecht (mrbaseman)
+ * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.3 and higher and Curl 
+ * @requirements    PHP 5.3 and higher and Curl
  *
  **/
 
 
 /* -------------------------------------------------------- */
 // Must include code to stop this file being accessed directly
-if(!defined('WB_PATH')) {
-        // Stop this file being access directly
-        if(!headers_sent()) header("Location: ../index.php",TRUE,301);
-        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
-}
+if(defined('WB_PATH') == false) { die('Illegale file access /'.basename(__DIR__).'/'.basename(__FILE__).''); }
 /* -------------------------------------------------------- */
 
 
@@ -35,13 +31,13 @@ $MY_DB_FIELDS=array(
     "max_entries"               => "INT DEFAULT '0'",
     "max_days"                  => "INT DEFAULT '0'",
     "time_zone"                 => "TEXT NOT NULL",
-    "dateformat"                => "TEXT NOT NULL",        
-    "date_end"                  => "TEXT NOT NULL",         
-    "section_start"             => "TEXT NOT NULL",        
-    "section_end"               => "TEXT NOT NULL",        
-    "enable_cache"              => "INT DEFAULT '1'",        
-    "refresh_time"              => "INT DEFAULT '0'", 
-    "cache_time"                => "INT DEFAULT '0'", 
+    "dateformat"                => "TEXT NOT NULL",
+    "date_end"                  => "TEXT NOT NULL",
+    "section_start"             => "TEXT NOT NULL",
+    "section_end"               => "TEXT NOT NULL",
+    "enable_cache"              => "INT DEFAULT '1'",
+    "refresh_time"              => "INT DEFAULT '0'",
+    "cache_time"                => "INT DEFAULT '0'",
     "description_end"           => "TEXT NOT NULL",
     "entry_template"            => "TEXT NOT NULL",
     "description_start"         => "TEXT NOT NULL",
@@ -51,11 +47,11 @@ $MY_DB_FIELDS=array(
     "title_end"                 => "TEXT NOT NULL",
     "date_start"                => "TEXT NOT NULL",
     "confidential_text"         => "TEXT NOT NULL",
-    "timeformat"                => "TEXT NOT NULL",     
-    "date_separator"            => "TEXT NOT NULL",    
-    "date_template"             => "TEXT NOT NULL",    
-    "optimize_date"             => "INT DEFAULT '1'",        
-    "midnight_fix"              => "INT DEFAULT '1'",        
+    "timeformat"                => "TEXT NOT NULL",
+    "date_separator"            => "TEXT NOT NULL",
+    "date_template"             => "TEXT NOT NULL",
+    "optimize_date"             => "INT DEFAULT '1'",
+    "midnight_fix"              => "INT DEFAULT '1'",
     "verify_peer"               => "INT DEFAULT '1'",
     "keep_todays_events"        => "INT DEFAULT '1'",
     "time_offset"               => "INT DEFAULT '0'"
@@ -71,10 +67,10 @@ $MY_OBSOLETE_DB_FIELDS=array(
     "entry_end"                 => "TEXT NOT NULL",
     "confidential_separator"    => "TEXT NOT NULL",
     "description_separator"     => "TEXT NOT NULL",
-    "show_location"             => "INT DEFAULT '1'", 
-    "show_description"          => "INT DEFAULT '0'", 
-    "allday_dateformat"         => "TEXT NOT NULL",     
-    "multiday_separator"        => "TEXT NOT NULL",    
+    "show_location"             => "INT DEFAULT '1'",
+    "show_description"          => "INT DEFAULT '0'",
+    "allday_dateformat"         => "TEXT NOT NULL",
+    "multiday_separator"        => "TEXT NOT NULL",
 );
 
 
@@ -127,7 +123,7 @@ print "<div><h4>converting database entries</h4>\n";
 $query="SELECT `section_id`";
 $fields_to_save=array();
 
-// find out which of the fields used in the past are present in the database 
+// find out which of the fields used in the past are present in the database
 
 foreach($MY_OBSOLETE_DB_FIELDS as $field_name => $description){
 
@@ -169,7 +165,7 @@ $TRANSFORM_TO_TEMPLATE=$new_fields["entry_template"];
 while( $fetch_content = $get_content->fetchRow() ) {
 
     $section_id = $fetch_content['section_id'];
-    
+
     // this is basically from view.php
 
     $location = ($fields_to_save['location']=='1')
@@ -224,60 +220,60 @@ while( $fetch_content = $get_content->fetchRow() ) {
 
 
     // initialize new fields
-    
+
     if($new_fields["description_start"]==1)
-        $description_start="{DEFAULT}";     
-    
+        $description_start="{DEFAULT}";
+
     if($new_fields["location_end"]==1)
-        $location_end="{DEFAULT}";     
-    
+        $location_end="{DEFAULT}";
+
     if($new_fields["location_start"]==1)
-        $location_start="{DEFAULT}";     
-   
+        $location_start="{DEFAULT}";
+
     if($new_fields["title_start"]==1)
-        $title_start="{DEFAULT}";     
-    
+        $title_start="{DEFAULT}";
+
     if($new_fields["title_end"]==1)
-        $title_end="{DEFAULT}";     
-    
+        $title_end="{DEFAULT}";
+
     if($new_fields["date_start"]==1)
-        $date_start="{DEFAULT}";     
-    
+        $date_start="{DEFAULT}";
+
     if($new_fields["confidential_text"]==1)
-        $confidential_text="{DEFAULT}";     
-    
+        $confidential_text="{DEFAULT}";
+
     if($new_fields["entry_template"]==1)
-        $entry_template="{DEFAULT}";     
+        $entry_template="{DEFAULT}";
 
     if($new_fields["timeformat"]==1)
-        $timeformat="{DEFAULT}";     
+        $timeformat="{DEFAULT}";
 
     if($new_fields["date_separator"]==1)
-        $date_separator="{DEFAULT}";     
+        $date_separator="{DEFAULT}";
 
     if($new_fields["date_template"]==1)
-        $date_template="{DEFAULT}";     
+        $date_template="{DEFAULT}";
 
     if($new_fields["optimize_date"]==1)
-        $optimize_date="1";     
+        $optimize_date="1";
 
     if($new_fields["midnight_fix"]==1)
-        $midnight_fix="1";     
+        $midnight_fix="1";
 
     if($new_fields["verify_peer"]==1)
-        $verify_peer="1";     
+        $verify_peer="1";
 
     if($new_fields["keep_todays_events"]==1)
-        $keep_todays_events="1";     
+        $keep_todays_events="1";
 
     if($new_fields["time_offset"]==1)
-        $time_offset="0";     
+        $time_offset="0";
 
     // if entry_template is new tranform empty strings to default settings
     if($TRANSFORM_TO_TEMPLATE) {
-    
+
         // the deprecated ones:
-    
+
         if($location === "" or $location===NULL)
             $location="{DEFAULT}";
 
@@ -295,7 +291,7 @@ while( $fetch_content = $get_content->fetchRow() ) {
 
         if($description_separator === "" or $description_separator===NULL)
             $description_separator="{DEFAULT}";
-            
+
         // now the ones which stay
 
         if($time_zone === "" or $time_zone===NULL)
@@ -315,7 +311,7 @@ while( $fetch_content = $get_content->fetchRow() ) {
 
         if($description_end === "" or $description_end===NULL)
             $description_end="{DEFAULT}";
-            
+
         // now the new fields
 
         if($entry_template === "" or $entry_template===NULL)
@@ -328,7 +324,7 @@ while( $fetch_content = $get_content->fetchRow() ) {
             $location_start="{DEFAULT}";
 
         // location_end will be filled below
-        
+
         if($title_start === "" or $title_start===NULL)
             $title_start="{DEFAULT}";
 
@@ -346,15 +342,15 @@ while( $fetch_content = $get_content->fetchRow() ) {
     }
 
 
-    
+
     // save old fields and transfer to the new ones
 
     if($fields_to_save["location"]==1)
         $location_end=$location;
-    
+
     if($fields_to_save["location_separator"]==1)
         $location_end=$location_separator;
-    
+
     if($fields_to_save["confidential_separator"]==1)
         $confidential_text=$confidential_separator;
 
@@ -371,11 +367,11 @@ while( $fetch_content = $get_content->fetchRow() ) {
         $timeformat=preg_replace('/\s*'.$allday_dateformat.'\s*/',"",$dateformat);
         $dateformat=$allday_dateformat;
     }
-    
+
     if($fields_to_save["multiday_separator"]==1)
         $date_separator=$multiday_separator;
 
-    // and this is more or less from save.php 
+    // and this is more or less from save.php
 
     $cal_urls = $admin->add_slashes($cal_urls);
     $max_entries = $admin->add_slashes($max_entries);
@@ -401,7 +397,7 @@ while( $fetch_content = $get_content->fetchRow() ) {
     $date_separator = $admin->add_slashes($date_separator);
     $date_template = $admin->add_slashes($date_template);
     $optimize_date = $admin->add_slashes($optimize_date);
-    
+
     $query = "UPDATE `".TABLE_PREFIX."mod_extcal`"
         . " SET `cal_urls` = '$cal_urls',"
         . " `max_entries` = '$max_entries',"
@@ -428,7 +424,7 @@ while( $fetch_content = $get_content->fetchRow() ) {
         . " `date_template` = '$date_template',"
         . " `optimize_date` = '$optimize_date' "
         . " WHERE `section_id` = '$section_id'";
-    $database->query($query);    
+    $database->query($query);
 
     if($TRANSFORM_TO_TEMPLATE) print "+";
         else print ".";
@@ -469,12 +465,12 @@ if(!$database->query('ALTER TABLE `'.$table_name.'` Engine = \'MyISAM\' ')) {
 //Copy settings files
 $mpath = WB_PATH.'/modules/extcal/';
 
-if (!file_exists($mpath.'frontend.css')) { 
-    rename($mpath.'default.css', $mpath.'frontend.css') ; 
+if (!file_exists($mpath.'frontend.css')) {
+    rename($mpath.'default.css', $mpath.'frontend.css') ;
 }
 
-if (!file_exists($mpath.'user_functions.php')) { 
-    rename($mpath.'user_functions.default.php', $mpath.'user_functions.php') ; 
+if (!file_exists($mpath.'user_functions.php')) {
+    rename($mpath.'user_functions.default.php', $mpath.'user_functions.php') ;
 }
 
 print " ready. </div>";

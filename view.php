@@ -3,41 +3,37 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.8
+ * @version         1.1.9
  * @authors         Martin Hecht
- * @copyright       (c) 2015 - 2017, Martin Hecht (mrbaseman)
+ * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.3 and higher and Curl 
+ * @requirements    PHP 5.3 and higher and Curl
  *
  **/
 
 
 /* -------------------------------------------------------- */
 // Must include code to stop this file being accessed directly
-if(!defined('WB_PATH')) {
-        // Stop this file being access directly
-        if(!headers_sent()) header("Location: ../index.php",TRUE,301);
-        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
-}
+if(defined('WB_PATH') == false) { die('Illegale file access /'.basename(__DIR__).'/'.basename(__FILE__).''); }
 /* -------------------------------------------------------- */
 
 
 
-// include language settings 
+// include language settings
 $lang = (dirname(__FILE__))."/languages/". DEFAULT_LANGUAGE .".php";
 require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $lang );
 
 
 // check if frontend.css file needs to be included into the <body></body> of view.php
-if((!function_exists('register_frontend_modfiles') || !defined('MOD_FRONTEND_CSS_REGISTERED')) &&  
+if((!function_exists('register_frontend_modfiles') && !defined('MOD_FRONTEND_CSS_REGISTERED')) &&
     file_exists(WB_PATH .'/modules/extcal/frontend.css')) {
     echo '<style type="text/css">';
     include_once(WB_PATH .'/modules/extcal/frontend.css');
     echo "\n</style>\n";
-} 
+}
 
 
 
@@ -52,16 +48,16 @@ $query="SELECT "
     . " `section_start`,"
     . " `section_end`,"
     . " `enable_cache`,"
-    . " `refresh_time`," 
-    . " `cache_time`," 
+    . " `refresh_time`,"
+    . " `cache_time`,"
     . " `description_end`,"
     . " `entry_template`,"
-    . " `description_start`,"     
+    . " `description_start`,"
     . " `location_start`,"
-    . " `location_end`,"    
+    . " `location_end`,"
     . " `title_start`,"
-    . " `title_end`,"    
-    . " `date_start`,"    
+    . " `title_end`,"
+    . " `date_start`,"
     . " `confidential_text`,"
     . " `date_template`,"
     . " `timeformat`,"
@@ -122,7 +118,7 @@ date_default_timezone_set($time_zone);
 
 // select range for displaying events *after* having set the time correct zone
 $starttime=date("Ymd",strtotime("+$time_offset seconds"));
-if(!$keep_todays_events) $starttime.="T".date("His",strtotime("+$time_offset seconds"));  
+if(!$keep_todays_events) $starttime.="T".date("His",strtotime("+$time_offset seconds"));
 $endtime=date("Ymd", strtotime("+".$max_days." days", strtotime($starttime)));
 if($max_days==0)$endtime=0;
 
@@ -223,7 +219,7 @@ foreach ($calendars as $ICS){
 
     if ($enable_cache
         && ($refresh_time > 0)
-        && file_exists($cachefile) 
+        && file_exists($cachefile)
         && time() - filemtime($cachefile) < $refresh_time ){
         if (copy($cachefile, $filename) === FALSE) break;
     } else {
@@ -238,7 +234,7 @@ foreach ($calendars as $ICS){
             if(function_exists('curl_init')){
                 if(!curl_get_copy($ICS, $filename, $verify_peer)) break;
             } else {
-                 // try without curl 
+                 // try without curl
                  // works for public source and basic authentication only
                  $copy_result=get_copy($ICS, $filename, $verify_peer);
                  if(!($copy_result === TRUE)){
@@ -269,7 +265,7 @@ foreach ($calendars as $ICS){
             "start" => $ev_start,
             "end"   => $ev->getEnd(),
             "allDay" => (($ev->isWholeDay() && date("H:i",$ev_start)=="00:00" )
-                          || (isset($ev_data["x-microsoft-cdo-alldayevent"]) 
+                          || (isset($ev_data["x-microsoft-cdo-alldayevent"])
                              && preg_match("/TRUE/i",$ev_data["x-microsoft-cdo-alldayevent"]))),
             "location" => $ev->getLocation(),
             "description" => $ev->getDescription(),
@@ -328,11 +324,11 @@ $counter=0;
 foreach($data as $key => $entry){
 
     $categories='';
-    
+
     // user function hook to modify values of the entry before processing
     if(function_exists('extcal_user_prepare_entry'))
         $entry=extcal_user_prepare_entry($entry,$fetch_content,$section_id);
-        
+
     if((($entry["start"]>=strtotime($starttime))||($entry["end"]>=strtotime($starttime)))
       &&(!array_key_exists("class",$entry["data"])
       ||preg_match("/PRIVATE/i",$entry["data"]["class"])===0)){
@@ -341,7 +337,7 @@ foreach($data as $key => $entry){
                 = $location_start
                 . htmlentities($entry["location"])
                 . $location_end;
-        } 
+        }
         $start_date=date($dateformat,$entry["start"]);
         $start_time=date($timeformat,$entry["start"]);
         $end_date=date($dateformat,$entry["end"]);
@@ -349,7 +345,7 @@ foreach($data as $key => $entry){
         if($midnight_fix && date("H:i",$entry["end"])=="00:00"){
             $end_date=date($dateformat,$entry["end"]-1);
             $end_time=date($timeformat,$entry["end"]-1);
-        }    
+        }
         $entry_dateformat=$dateformat." ".$timeformat;
 
         if($entry["allDay"]){
@@ -370,24 +366,24 @@ foreach($data as $key => $entry){
                 = $description_start
                 . nl2br(htmlentities($entry["description"]))
                 . $description_end;
-        } 
+        }
 
         $date_string=$date_template;
         $date_string = preg_replace("/{START_DATE}/",$start_date,$date_string);
         $date_string = preg_replace("/{END_DATE}/",$end_date,$date_string);
         $date_string = preg_replace("/{START_TIME}/",$start_time,$date_string);
         $date_string = preg_replace("/{END_TIME}/",$end_time,$date_string);
-        
+
         if($optimize_date){
             $date_string = preg_replace('/\s*{DATE_SEPARATOR}\s*$/',"",$date_string);
             $date_string = preg_replace('/^\s*/',"",$date_string);
             // fetch this again for below
-            $end_date=date($dateformat,$entry["end"]);  
+            $end_date=date($dateformat,$entry["end"]);
             $end_time=date($timeformat,$entry["end"]);
             if($midnight_fix && date("H:i",$entry["end"])=="00:00"){
                 $end_date=date($dateformat,$entry["end"]-1);
                 $end_time=date($timeformat,$entry["end"]-1);
-            }    
+            }
             if($entry["allDay"]){
                 $start_time="";
                 $end_time="";
@@ -395,7 +391,7 @@ foreach($data as $key => $entry){
         }
 
         $date_string = preg_replace("/{DATE_SEPARATOR}/",$date_separator,$date_string);
-        
+
         if($date_string!="")
             $date_string
             = $date_start
@@ -406,23 +402,23 @@ foreach($data as $key => $entry){
             $entry["title"]
             = $title_start
             . htmlentities($entry["title"])
-            . $title_end;    
+            . $title_end;
 
         if(array_key_exists("class",$entry["data"])
            && !(preg_match("/CONFIDENTIAL/i",$entry["data"]["class"])===0)){
             $entry["description"]="";
             $entry["title"]=$confidential_text;
         }
-        
+
         if(array_key_exists("categories",$entry["data"])){
             $categories=$entry["data"]["categories"];
             if(isset($LANG['categories'][strtolower($categories)])){
                 $categories=$LANG['categories'][strtolower($categories)];
             }
         }
-        
+
         $output_string = $entry_template;
-        
+
         $placeholders = array (
             '{DATE}'    => $date_string,
             '{START_DATE}'    => $start_date,
@@ -435,15 +431,15 @@ foreach($data as $key => $entry){
             '{DESCRIPTION}' => $entry["description"],
             '{CATEGORIES}'  => $categories
         );
-        
+
         // user function hook to process the individual place holders
         if(function_exists('extcal_user_process_placeholders'))
             $placeholders=extcal_user_process_placeholders($placeholders,$fetch_content,$section_id);
-        
-            
+
+
         foreach($placeholders as $template_key => $template_value)
             $output_string = preg_replace("/$template_key/",$template_value,$output_string);
-        
+
 
         // user function hook to postprocess the whole entry
         if(function_exists('extcal_user_postprocess_entry'))

@@ -3,25 +3,21 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.8
+ * @version         1.1.9
  * @authors         Martin Hecht
- * @copyright       (c) 2015 - 2017, Martin Hecht (mrbaseman)
+ * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.3 and higher and Curl 
+ * @requirements    PHP 5.3 and higher and Curl
  *
  **/
 
 
 /* -------------------------------------------------------- */
 // Must include code to stop this file being accessed directly
-if(!defined('WB_PATH')) {
-        // Stop this file being access directly
-        if(!headers_sent()) header("Location: ../index.php",TRUE,301);
-        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
-}
+if(defined('WB_PATH') == false) { die('Illegale file access /'.basename(__DIR__).'/'.basename(__FILE__).''); }
 /* -------------------------------------------------------- */
 
 
@@ -67,16 +63,16 @@ $query="SELECT "
     . " `section_start`,"
     . " `section_end`,"
     . " `enable_cache`,"
-    . " `refresh_time`," 
-    . " `cache_time`," 
+    . " `refresh_time`,"
+    . " `cache_time`,"
     . " `description_end`,"
     . " `entry_template`,"
-    . " `description_start`,"     
+    . " `description_start`,"
     . " `location_start`,"
-    . " `location_end`,"    
+    . " `location_end`,"
     . " `title_start`,"
-    . " `title_end`,"    
-    . " `date_start`,"    
+    . " `title_end`,"
+    . " `date_start`,"
     . " `confidential_text`,"
     . " `timeformat`,"
     . " `date_separator`,"
@@ -124,7 +120,7 @@ if($enable_cache != 0) $enable_cache="checked";
 $refresh_time = intval($content['refresh_time']) or $refresh_time = 0;
 
 $cache_time = intval($content['cache_time']) or $cache_time = 0;
-    
+
 $description_end = $content['description_end'];
 if($description_end === "{DEFAULT}" or $description_end===NULL)
     $description_end=$LANG['frontend']['MOD_EXTCAL_DESCRIPTION_END'];
@@ -193,10 +189,10 @@ $time_offset = intval($content['time_offset']) or $time_offset = 0;
 
 
 // calculate cache size
-$list = glob(dirname(__FILE__).'/cache/*.ics'); 
+$list = glob(dirname(__FILE__).'/cache/*.ics');
 $dir_size = 0;
 if (is_array($list)) foreach ($list as $file_name) $dir_size += filesize($file_name);
-$cache_size=round( $dir_size/1024,2 ).'&nbsp;kB'; 
+$cache_size=round( $dir_size/1024,2 ).'&nbsp;kB';
 
 // Insert vars
 $template->set_var(
@@ -250,8 +246,8 @@ $template->set_var(
         'MOD_EXTCAL_SECTION_END'        => htmlspecialchars($section_end),
         'MOD_EXTCAL_CACHE_SIZE'         => $cache_size,
         'MOD_EXTCAL_ENABLE_CACHE'       => $enable_cache,
-        'MOD_EXTCAL_REFRESH_TIME'       => htmlspecialchars($refresh_time), 
-        'MOD_EXTCAL_CACHE_TIME'         => htmlspecialchars($cache_time), 
+        'MOD_EXTCAL_REFRESH_TIME'       => htmlspecialchars($refresh_time),
+        'MOD_EXTCAL_CACHE_TIME'         => htmlspecialchars($cache_time),
         'MOD_EXTCAL_DESCRIPTION_END'    => htmlspecialchars($description_end),
         'MOD_EXTCAL_ENTRY_TEMPLATE'     => htmlspecialchars($entry_template),
         'MOD_EXTCAL_DESCRIPTION_START'  => htmlspecialchars($description_start),

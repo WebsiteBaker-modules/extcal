@@ -8,7 +8,7 @@
 
 <table cellpadding="0" cellspacing="0" border="0" width="100%" >
 <tr>
-    <td> 
+    <td>
         <A href="{WB_URL}/modules/extcal/help.php?page_id={PAGE_ID}">{TXT_EXTCAL_HELP_PAGE}</a>
     </td>
     <td style="text-align: right;">
@@ -259,7 +259,7 @@
 <tr>
     <td align="left">
         &nbsp;<br />
-        {TXT_EXTCAL_CACHE_SIZE} {MOD_EXTCAL_CACHE_SIZE} 
+        {TXT_EXTCAL_CACHE_SIZE} {MOD_EXTCAL_CACHE_SIZE}
     </td>
     <td></td>
 </tr>

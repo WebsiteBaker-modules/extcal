@@ -3,31 +3,27 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.8
+ * @version         1.1.9
  * @authors         Martin Hecht
- * @copyright       (c) 2015 - 2017, Martin Hecht (mrbaseman)
+ * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.3 and higher and Curl 
+ * @requirements    PHP 5.3 and higher and Curl
  *
  **/
 
 
 /* -------------------------------------------------------- */
 // Must include code to stop this file being accessed directly
-if(!defined('WB_PATH')) {
-        // Stop this file being access directly
-        if(!headers_sent()) header("Location: ../index.php",TRUE,301);
-        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
-}
+if(defined('WB_PATH') == false) { die('Illegale file access /'.basename(__DIR__).'/'.basename(__FILE__).''); }
 /* -------------------------------------------------------- */
 
 
-# usage example: 
+# usage example:
 # $S=WebDAVFetch('http://user:password@www.example.com/path/to/calendar/');
-# 
+#
 
 include_once('SabreDAV/vendor/autoload.php');
 
@@ -52,14 +48,14 @@ function WebDAVFetch ($URL,$enable_cache,$cache_time,$verify_peer){
 
     if(!$verify_peer)$client->addCurlSetting(CURLOPT_SSL_VERIFYPEER, FALSE);
     $client->addCurlSetting(CURLOPT_USERAGENT, 'Extcal');
-    
+
     $entries=$client->propfind(
         '',
         array(
             '{DAV:}getetag',
             '{DAV:}getcontenttype',
             '{DAV:}getlastmodified'
-        ), 
+        ),
         1
     );
 
@@ -71,7 +67,7 @@ function WebDAVFetch ($URL,$enable_cache,$cache_time,$verify_peer){
         && preg_match('/calendar/i',$properties['{DAV:}getcontenttype'])>0){
             if ($enable_cache
                 && ($cache_time > 0)
-                && file_exists($cachefile) 
+                && file_exists($cachefile)
                 && (strtotime($properties['{DAV:}getlastmodified']) < filemtime($cachefile))
                 && time() - filemtime($cachefile) < $cache_time ){
                 $entry=file_get_contents($cachefile);
@@ -122,7 +118,7 @@ function curl_get_copy($URL='',$target_file='',$verify_peer=TRUE){
     $contents=curl_exec($ch);
 
     fwrite($fp, $contents);
-    
+
     curl_close($ch);
     fclose($fp);
     return TRUE;
@@ -133,7 +129,7 @@ function curl_get_copy($URL='',$target_file='',$verify_peer=TRUE){
 function get_copy($fURI='', $target_file='',$verify_peer=TRUE)
 {
 // $fURI:     URL to a file located on a web server
-// $target_file:    Path to a local file   
+// $target_file:    Path to a local file
 
 if ( file_exists( $target_file ) ) {
     $ifmodhdr = 'If-Modified-Since: '.date( "r", filemtime( $target_file ) )."\r\n";
@@ -142,7 +138,7 @@ else {
     $ifmodhdr = '';
 }
 
-// set request header for GET with referrer for modified files, that follows redirects       
+// set request header for GET with referrer for modified files, that follows redirects
 $arrRequestHeaders = array(
     'http'=>array(
     'method'    =>'GET',
@@ -169,7 +165,7 @@ if( $rc ) {
 else {
     $err = error_get_last();
 }
-       
+
 // Parse HTTP Response Headers for  HTTP Status, as well filename, type, date information
 // Need to start from rear, to get last set of headers after possible sets of redirection headers
 if ( $http_response_header ) {
@@ -183,7 +179,7 @@ if ( $http_response_header ) {
         case 'Last-Modified':
             if ( !isset($http_content_modtime) ) {
             $http_content_modtime = strtotime( $arrHeader[2] );
-            }               
+            }
             break;
         case 'Content-Type':
             // skip type checking - maybe we include it later
@@ -191,7 +187,7 @@ if ( $http_response_header ) {
         case 'Content-Disposition':
             if ( !isset($http_content_filename) && preg_match('@filename\\s*=\\s*(?|"([^"]+)"|([\\S]+));?@ims', $arrHeader[2], $arrTokens) > 0 ) {
             $http_content_filename = basename($arrTokens[1]);
-            }               
+            }
             break;
         }
     }

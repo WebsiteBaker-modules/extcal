@@ -3,14 +3,14 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.8
+ * @version         1.1.9
  * @authors         Martin Hecht
- * @copyright       (c) 2015 - 2017, Martin Hecht (mrbaseman)
+ * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.3 and higher and Curl 
+ * @requirements    PHP 5.3 and higher and Curl
  *
  **/
 
@@ -41,12 +41,12 @@ require_once ( !file_exists($lang) ? (dirname(__FILE__))."/languages/EN.php" : $
 
 if (isset($_POST['cmd_empty'])) {
     $list = glob(dirname(__FILE__).'/cache/*.ics');
-    if ($list) 
-        foreach ($list as $file_name) 
-            if (strrchr($file_name,'.')!='.') 
+    if ($list)
+        foreach ($list as $file_name)
+            if (strrchr($file_name,'.')!='.')
                 unlink($file_name);
     $admin->print_success(
-        $LANG['backend']['TXT_EXTCAL_CACHE_EMPTY'], 
+        $LANG['backend']['TXT_EXTCAL_CACHE_EMPTY'],
             ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 } else {
 
@@ -123,7 +123,7 @@ if(isset($_POST['cal_urls'])) {
         . " `keep_todays_events` = '$keep_todays_events',"
         . " `time_offset` = '$time_offset' "
         . " WHERE `section_id` = '$section_id'";
-    $database->query($query);    
+    $database->query($query);
 }
 
 // Check if there is a database error, otherwise say successful

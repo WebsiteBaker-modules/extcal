@@ -3,32 +3,28 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.8
+ * @version         1.1.9
  * @authors         Martin Hecht
- * @copyright       (c) 2015 - 2017, Martin Hecht (mrbaseman)
+ * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
- * @requirements    PHP 5.3 and higher and Curl 
+ * @requirements    PHP 5.3 and higher and Curl
  *
  **/
 
 
 /* -------------------------------------------------------- */
 // Must include code to stop this file being accessed directly
-if(!defined('WB_PATH')) {
-        // Stop this file being access directly
-        if(!headers_sent()) header("Location: ../index.php",TRUE,301);
-        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
-}
+if(defined('WB_PATH') == false) { die('Illegale file access /'.basename(__DIR__).'/'.basename(__FILE__).''); }
 /* -------------------------------------------------------- */
 
 
 
 // user function hook to modify values of the entry before processing
 
-/* 
+/*
 // This is an example code which puts a headline for each month into the list
 
 function extcal_user_prepare_entry($entry,$settings=null,$section_id=NULL){
@@ -37,7 +33,7 @@ function extcal_user_prepare_entry($entry,$settings=null,$section_id=NULL){
     if($entry_month!=$extcal_current_month && $entry["end"]>=strtotime(date("Ymd"))){
         // if the entry_template is empty, too, we don't expect any output
         if($settings['entry_template']!=''){
-            // you might want to translate it 
+            // you might want to translate it
             // we abuse the function of the next example to accomplish this:
             echo extcal_user_process_placeholders("<h3>$entry_month</h3>\n");
             $extcal_current_month=$entry_month;
@@ -48,9 +44,9 @@ function extcal_user_prepare_entry($entry,$settings=null,$section_id=NULL){
 }
 
 */
-        
 
-        
+
+
 // user function hook to process the individual place holders
 
 /*
@@ -65,7 +61,7 @@ function extcal_user_process_placeholders($placeholders,$settings=null){
                 "Friday" => "Freitag",
                 "Saturday" => "Samstag",
                 "Sunday" => "Sonntag",
-                
+
                 "January" => "Januar",
                 "February" => "Februar",
                 "March" => "M&auml;rz",
@@ -89,7 +85,7 @@ function extcal_user_process_placeholders($placeholders,$settings=null){
 
 */
 
-        
+
 
 // user function hook to postprocess the whole entry
 
@@ -117,7 +113,7 @@ function extcal_user_postprocess_entry($output_string,$settings=null){
     foreach($extcal_output_filters as $filter_match => $filter_replacement){
         // find all matches for the current pattern
         while(  preg_match($filter_match,$output_string,$found_matches)){
-            // assign a number of the match 
+            // assign a number of the match
             $number='${'.count($matches).'}';
             // store the replacement for the matched string, note that we do the replacement of sub-patterns
             $matches[$number]=preg_replace($filter_match,$filter_replacement,$found_matches[0]);
