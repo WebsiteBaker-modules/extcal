@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.9
+ * @version         1.2.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -91,7 +91,8 @@ if(isset($_POST['cal_urls'])) {
     if($_POST['keep_todays_events']==="{DEFAULT}")$keep_todays_events=1;
     $time_offset           = intval($_POST['time_offset']) or $time_offset = 0;
     if($_POST['time_offset']==="{DEFAULT}")$time_offset=0;
-
+    $calendar_start        = $admin->add_slashes(str_replace($tags, '', $_POST['calendar_start']));
+    $calendar_end          = $admin->add_slashes(str_replace($tags, '', $_POST['calendar_end']));
 
     $query = "UPDATE `".TABLE_PREFIX."mod_extcal`"
         . " SET `cal_urls` = '$cal_urls',"
@@ -121,7 +122,9 @@ if(isset($_POST['cal_urls'])) {
         . " `midnight_fix` = '$midnight_fix',"
         . " `verify_peer` = '$verify_peer',"
         . " `keep_todays_events` = '$keep_todays_events',"
-        . " `time_offset` = '$time_offset' "
+        . " `time_offset` = '$time_offset',"
+        . " `calendar_start` = '$calendar_start',"
+        . " `calendar_end` = '$calendar_end' "
         . " WHERE `section_id` = '$section_id'";
     $database->query($query);
 }

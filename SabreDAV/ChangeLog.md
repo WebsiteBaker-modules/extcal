@@ -1,6 +1,101 @@
 ChangeLog
 =========
 
+2.1.11 (2016-10-06)
+-------------------
+
+* #805: It wasn't possible to create calendars that hold events, journals and
+  todos using MySQL, because the `components` column was 1 byte too small.
+* The zip release ships with [sabre/vobject 3.5.3][vobj],
+  [sabre/http 3.0.5][http], and [sabre/event 2.0.2][evnt].
+
+
+2.1.10 (2016-03-10)
+-------------------
+
+* #784: Sync logs for address books were not correctly cleaned up after
+  deleting them.
+* The zip release ships with [sabre/vobject 3.5.0][vobj],
+  [sabre/http 3.0.5][http], and [sabre/event 2.0.2][evnt].
+
+
+2.1.9 (2016-01-25)
+------------------
+
+* #674: PHP7 support (@DeepDiver1975).
+* The zip release ships with [sabre/vobject 3.5.0][vobj],
+  [sabre/http 3.0.5][http], and [sabre/event 2.0.2][evnt].
+
+
+2.1.8 (2016-01-04)
+------------------
+
+* #729: Fixed a caching problem in the Tree object.
+* #740: Bugs in `migrate20.php` script.
+* The zip release ships with [sabre/vobject 3.4.8][vobj],
+  [sabre/http 3.0.5][http], and [sabre/event 2.0.2][evnt].
+
+
+2.1.7 (2015-09-05)
+------------------
+
+* #705: A `MOVE` request that gets prevented from deleting the source resource
+  will still remove the target resource. Now all events are triggered before
+  any destructive operations.
+* The zip release ships with [sabre/vobject 3.4.7][vobj],
+  [sabre/http 3.0.5][http], and [sabre/event 2.0.2][evnt].
+
+
+2.1.6 (2015-07-21)
+------------------
+
+* #657: Migration script would break when coming a cross an iCalendar object
+  with no UID.
+* #691: Workaround for broken Windows Phone client.
+* The zip release ships with [sabre/vobject 3.4.5][vobj],
+  [sabre/http 3.0.5][http], and [sabre/event 2.0.2][evnt].
+
+
+2.1.5 (2015-07-11)
+------------------
+
+* #677: Resources with the name '0' would not get retrieved when using
+  `Depth: infinity` in a `PROPFIND` request.
+* The zip release ships with [sabre/vobject 3.4.5][vobj],
+  [sabre/http 3.0.5][http], and [sabre/event 2.0.2][evnt].
+
+
+2.1.4 (2015-05-25)
+------------------
+
+* #651: Double-encoded path in the browser plugin. Should fix a few broken
+  links in some setups.
+* #650: Correctly cleaning up change info after deleting calendars (@ErrOrnAmE).
+* #658: Updating `schedule-calendar-default-URL` does not work well, so we're
+  disabling it until there's a better fix.
+* The zip release ships with [sabre/vobject 3.4.3][vobj],
+  [sabre/http 3.0.5][http], and [sabre/event 2.0.2][evnt].
+
+
+2.1.3 (2015-02-25)
+------------------
+
+* #586: `SCHEDULE-STATUS` should not contain a reason-phrase.
+* #539: Fixed a bug related to scheduling in shared calendars.
+* #595: Support for calendar-timezone in iCalendar exports.
+* #581: findByUri would send empty prefixes to the principal backend (@soydeedo)
+* #611: Escaping a bit more HTML output in the browser plugin. (@LukasReschke)
+* #610: Don't allow discovery of arbitrary files using `..` in the browser
+  plugin (@LukasReschke).
+* Browser plugin now shows quota properties.
+* #612: PropertyStorage didn't delete properties from nodes when a node's
+  parents get deleted.
+* #581: Fixed problems related to finding attendee information during
+  scheduling.
+* The zip release ships with [sabre/vobject 3.4.2][vobj],
+  [sabre/http 3.0.4][http], and [sabre/event 2.0.1][evnt].
+
+
 2.1.2 (2014-12-10)
 ------------------
 
@@ -131,6 +226,34 @@ ChangeLog
 * Added: #523 Custom CalDAV backends can now mark any calendar as read-only.
 * The zip release ships with [sabre/vobject 3.3.3][vobj],
   [sabre/http 3.0.0][http], and [sabre/event 2.0.0][evnt].
+
+
+2.0.9 (2015-09-04)
+------------------
+
+* #705: A `MOVE` request that gets prevented from deleting the source resource
+  will still remove the target resource. Now all events are triggered before
+  any destructive operations.
+* The zip release ships with [sabre/vobject 3.4.6][vobj],
+  [sabre/http 2.0.4][http], and [sabre/event 1.0.1][evnt].
+
+
+
+2.0.8 (2015-07-11)
+------------------
+
+* #677: Resources with the name '0' would not get retrieved when using
+  `Depth: infinity` in a `PROPFIND` request.
+* The zip release ships with [sabre/vobject 3.3.5][vobj],
+  [sabre/http 2.0.4][http], and [sabre/event 1.0.1][evnt].
+
+
+2.0.7 (2015-05-25)
+------------------
+
+* #650: Correctly cleaning up change info after deleting calendars (@ErrOrnAmE).
+* The zip release ships with [sabre/vobject 3.3.4][vobj],
+  [sabre/http 2.0.4][http], and [sabre/event 1.0.1][evnt].
 
 
 2.0.6 (2014-12-10)
@@ -334,6 +457,14 @@ ChangeLog
 * Fixed: SabreDAV catches every exception again.
 * Added: Issue #358, adding a component=vevent parameter to the content-types
   for calendar objects, if the caldav backend provides this info.
+
+
+1.8.12-stable (2015-01-21)
+--------------------------
+
+* The zip release ships with sabre/vobject 2.1.7.
+* #568: Support empty usernames and passwords in basic auth.
+
 
 1.8.11 (2014-12-10)
 -------------------

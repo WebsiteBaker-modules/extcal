@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.9
+ * @version         1.2.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -60,6 +60,8 @@ if(defined('WB_URL'))
         . " `verify_peer` INT DEFAULT '1',"
         . " `keep_todays_events` INT DEFAULT '1',"
         . " `time_offset` INT DEFAULT '0',"
+        . " `calendar_start` TEXT NOT NULL,"
+        . " `calendar_end` TEXT NOT NULL,"
         . " PRIMARY KEY ( `section_id` )"
         . " ) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_unicode_ci'";
     $database->query($mod_extcal);

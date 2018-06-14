@@ -4,7 +4,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.9
+ * @version         1.2.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html

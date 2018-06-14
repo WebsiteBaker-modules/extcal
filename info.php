@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.9
+ * @version         1.2.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -16,6 +16,9 @@
 
 /*
  *      CHANGELOG
+ *      1.2.0   2018-06-14      - added place holder for the calendar name
+ *      1.1.11  2018-06-13      - updated help pages
+ *      1.1.10  2018-06-12      - updated sabre-dav to 2.1.12
  *      1.1.9   2018-04-12      - correct the behavior for including module css
  *      1.1.8   2017-01-23      - repair upgrade script
  *      1.1.7   2017-01-23      - translate default categories into current frontend language
@@ -112,7 +115,7 @@ if(defined('WB_PATH') == false) { die('Illegale file access /'.basename(__DIR__)
 $module_directory      = 'extcal';
 $module_name           = 'External Calendar';
 $module_function       = 'page';
-$module_version        = '1.1.9';
+$module_version        = '1.2.0';
 $module_platform       = 'WebsiteBaker 2.8.x';
 $module_author         = 'Martin Hecht';
 $module_license        = 'GNU General Public License';

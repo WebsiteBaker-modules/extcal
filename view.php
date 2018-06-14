@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.9
+ * @version         1.2.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -67,7 +67,9 @@ $query="SELECT "
     . " `midnight_fix`,"
     . " `verify_peer`,"
     . " `keep_todays_events`,"
-    . " `time_offset` "
+    . " `time_offset`,"
+    . " `calendar_start`,"
+    . " `calendar_end`"
     . " FROM `".TABLE_PREFIX."mod_extcal`"
     . " WHERE `section_id` = '$section_id'";
 
@@ -102,6 +104,8 @@ $midnight_fix = $fetch_content['midnight_fix'];
 $verify_peer = $fetch_content['verify_peer'];
 $keep_todays_events = $fetch_content['keep_todays_events'];
 $time_offset = $fetch_content['time_offset'];
+$calendar_start = $fetch_content['calendar_start'];
+$calendar_end = $fetch_content['calendar_end'];
 
 
 
@@ -171,6 +175,12 @@ if($date_separator === "{DEFAULT}" or $date_separator===NULL)
 if($date_template === "{DEFAULT}" or $date_template===NULL)
     $date_template=$LANG['frontend']['MOD_EXTCAL_DATE_TEMPLATE'];
 
+if($calendar_start === "{DEFAULT}" or $calendar_start===NULL)
+    $calendar_start=$LANG['frontend']['MOD_EXTCAL_CALENDAR_START'];
+
+if($calendar_end === "{DEFAULT}" or $calendar_end===NULL)
+    $calendar_end=$LANG['frontend']['MOD_EXTCAL_CALENDAR_END'];
+
 // update fetch_contets array now
 
 $fetch_content=array(
@@ -201,7 +211,10 @@ $fetch_content=array(
     'midnight_fix' => $midnight_fix,
     'verify_peer' => $verify_peer,
     'keep_todays_events' => $keep_todays_events,
-    'time_offset' => $time_offset
+    'time_offset' => $time_offset,
+    'calendar_start' => $calendar_start,
+    'calendar_end' => $calendar_end
+
 );
 
 require_once('SG_iCal/SG_iCal.php');
@@ -253,7 +266,12 @@ foreach ($calendars as $ICS){
 
     $evts = $ical->getEvents();
     $tzinfo = $ical->getTimeZoneInfo();
-
+    $calinfo = $ical->getCalendarInfo();
+    if($calinfo){
+        $calTitle = $calinfo->getTitle();
+    } else {
+        $calTitle = "";
+    }
 
     if(is_array($evts) && !empty($evts))
     foreach($evts as $id => $ev) {
@@ -262,6 +280,7 @@ foreach ($calendars as $ICS){
         $curr_Evt = array(
             "id" => ($id+1),
             "title" => $ev->getProperty('summary'),
+            "calendar" => $calTitle,
             "start" => $ev_start,
             "end"   => $ev->getEnd(),
             "allDay" => (($ev->isWholeDay() && date("H:i",$ev_start)=="00:00" )
@@ -337,6 +356,12 @@ foreach($data as $key => $entry){
                 = $location_start
                 . htmlentities($entry["location"])
                 . $location_end;
+        }
+        if ( $entry["calendar"] != "" ){
+            $entry["calendar"]
+                = $calendar_start
+                . htmlentities($entry["calendar"])
+                . $calendar_end;
         }
         $start_date=date($dateformat,$entry["start"]);
         $start_time=date($timeformat,$entry["start"]);
@@ -428,6 +453,7 @@ foreach($data as $key => $entry){
             '{DATE_SEPARATOR}' => (($date_string=="")&&($entry["allDay"]))?"":$date_separator,
             '{LOCATION}'    => $entry["location"],
             '{TITLE}'    => $entry["title"],
+            '{CALENDAR}' => $entry["calendar"],
             '{DESCRIPTION}' => $entry["description"],
             '{CATEGORIES}'  => $categories
         );

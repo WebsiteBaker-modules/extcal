@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.9
+ * @version         1.2.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -40,7 +40,7 @@ The most simple solution is to put your ical files just into the media folder or
 calendars directory of this module and manage them by using the ftp-url out of your
 client software. However, this only works for a single client where it is ensured that no
 concurrent access may happen. If you need several accounts and you are looking for a
-simple WebDAV server you might want to try out Ba&iuml;kal.</p>
+WebDAV server you might want to try out Owncloud.</p>
 
 <p> In the backend you can configure lots of details about the appearance of the module.
 The central setting is the textbox where you enter the URLs of your calendars. If a
@@ -97,6 +97,7 @@ formatting block. That's how the {DATE} block is generated.</p>
 out of the appointment and a prefix and a suffix formatting block. This applies for the
 title of the entry ({TITLE}), the location ({LOCATION}), the detailled description
 ({DESCRIPTION}), and categories ({CATEGORIES}).
+The calendar name ({CALENDAR}) can also be used within a particular entries.
 
 If one of the fields is empty, also the prefix and suffix formatting block are suppressed.
 If you want to avoid this, just enter a space character in the title, the location or the
@@ -169,10 +170,10 @@ $LANG['backend'] = array(
     'TXT_EXTCAL_ENTRY_TEMPLATE'     => "in the following template you can set up the"
                                      . " appearance of each calendar entry."
                                      . " Possible place holders are {DATE},"
-                                     . " {TITLE}, {LOCATION}, and {DESCRIPTION}."
+                                     . " {TITLE}, {LOCATION}, {DESCRIPTION}, and {CALENDAR}."
                                      . " Instead of the date you can also use"
                                      . " {START_DATE}, {END_DATE}, {START_TIME},"
-                                     . " {END_TIME}, and {DATE_SEPARATOR} here."
+                                     . " {END_TIME}, {DATE_SEPARATOR} here."
                                      . " The opening and closing blocks defined above"
                                      . " are inserted around each of these placeholders"
                                      . " provided that this string is not empty for the"
@@ -209,7 +210,10 @@ $LANG['backend'] = array(
                                      . " (security risk if unchecked)",
     'TXT_EXTCAL_KEEP_TODAYS_EVENTS' => "keep elapsed appointments until midnight",
     'TXT_EXTCAL_TIME_OFFSET'        => "correction of the server time in seconds",
-
+    'TXT_EXTCAL_CALENDAR_START'     => "formatting at the beginning of a calendar name"
+                                     . " (prepended to {CALENDAR})",
+    'TXT_EXTCAL_CALENDAR_END'       => "formatting at the end of a calendar name"
+                                     . " (appended to {CALENDAR})"
 );
 
 $LANG['frontend'] = array(
@@ -233,6 +237,8 @@ $LANG['frontend'] = array(
     'MOD_EXTCAL_DATE_TEMPLATE'      => "{START_DATE} {START_TIME}"
                                      . " {DATE_SEPARATOR} {END_DATE}",
 
+    'MOD_EXTCAL_CALENDAR_START'     => "<div class=\"extcal-calendar\">",
+    'MOD_EXTCAL_CALENDAR_END'       => "</div>\n",
 );
 
 $LANG['categories'] = array(

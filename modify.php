@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.9
+ * @version         1.2.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -81,7 +81,9 @@ $query="SELECT "
     . " `midnight_fix`, "
     . " `verify_peer`,"
     . " `keep_todays_events`,"
-    . " `time_offset` "
+    . " `time_offset`,"
+    . " `calendar_start`,"
+    . " `calendar_end` "
     . " FROM `".TABLE_PREFIX."mod_extcal`"
     . " WHERE `section_id` = '$section_id'";
 
@@ -187,6 +189,15 @@ if($keep_todays_events != 0) $keep_todays_events="checked";
 
 $time_offset = intval($content['time_offset']) or $time_offset = 0;
 
+$calendar_start = $content['calendar_start'];
+if($calendar_start === "{DEFAULT}" or $calendar_start===NULL)
+    $calendar_start=$LANG['frontend']['MOD_EXTCAL_CALENDAR_START'];
+
+$calendar_end = $content['calendar_end'];
+if($calendar_end === "{DEFAULT}" or $calendar_end===NULL)
+    $calendar_end=$LANG['frontend']['MOD_EXTCAL_CALENDAR_END'];
+
+
 
 // calculate cache size
 $list = glob(dirname(__FILE__).'/cache/*.ics');
@@ -231,6 +242,8 @@ $template->set_var(
         'TXT_EXTCAL_VERIFY_PEER'        => $LANG['backend']['TXT_EXTCAL_VERIFY_PEER'],
         'TXT_EXTCAL_KEEP_TODAYS_EVENTS' => $LANG['backend']['TXT_EXTCAL_KEEP_TODAYS_EVENTS'],
         'TXT_EXTCAL_TIME_OFFSET'        => $LANG['backend']['TXT_EXTCAL_TIME_OFFSET'],
+        'TXT_EXTCAL_CALENDAR_START'     => $LANG['backend']['TXT_EXTCAL_CALENDAR_START'],
+        'TXT_EXTCAL_CALENDAR_END'       => $LANG['backend']['TXT_EXTCAL_CALENDAR_END'],
         'DISPLAY_ADVANCED'              => $display_advanced,
         'ADVANCED'                      => $advanced,
         'ADVANCED_BUTTON'               => $advanced_button,
@@ -265,6 +278,8 @@ $template->set_var(
         'MOD_EXTCAL_VERIFY_PEER'        => $verify_peer,
         'MOD_EXTCAL_KEEP_TODAYS_EVENTS' => $keep_todays_events,
         'MOD_EXTCAL_TIME_OFFSET'        => $time_offset,
+        'MOD_EXTCAL_CALENDAR_START'     => htmlspecialchars($calendar_start),
+        'MOD_EXTCAL_CALENDAR_END'       => htmlspecialchars($calendar_end),
         'TEXT_SAVE'                     => $TEXT['SAVE'],
         'TEXT_CANCEL'                   => $TEXT['CANCEL'],
         'FTAN'                          => $admin->getFTAN()

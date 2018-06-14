@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.9
+ * @version         1.2.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -46,8 +46,8 @@ einfachste L&ouml;sung zur Verwaltung der ical files ist, diese einfach im Media
 abzulegen und sie &uuml;ber die entsprechende ftp-url aus Ihrer Client-Software heraus zu
 verwalten. Das funktioniert allerdings nur, solange ausschlie&szlig;lich ein einzelner
 Client eingesetzt wird und sichergestellt ist, dass keine konkurrierenden Zugriffe
-stattfinden. Wenn Sie mehrere Accounts brauchen und einen einfachen WebDAV server suchen,
-k&ouml;nnte Ba&iuml;kal etwas f&uuml;r Sie sein.</p>
+stattfinden. Wenn Sie mehrere Accounts brauchen und einen WebDAV server suchen,
+k&ouml;nnte eventuell Owncloud etwas f&uuml;r Sie sein.</p>
 
 <p> Im Backend lassen sich viele Details zur Darstellung einstellen. Die zentrale
 Einstellung ist das Feld, in dem die URLs der Kalender eingegeben werden. Wird f&uuml;r
@@ -120,6 +120,7 @@ der aus dem jeweiligen Kalendereintrag stammt und einem Formatierungs-Baustein a
 Pr&auml;fix und einem als Suffix.
 Das gilt f&uuml;r den Titel des Kalendereintrags  ({TITLE}), den Ort ({LOCATION}) und die
 detaillierte Beschreibung ({DESCRIPTION}) und Kategorien ({CATEGORIES}).
+Ebenso kann der Kalender-Name ({CALENDAR}) innerhalb eines Eintrags verwendet werden.
 Wenn eines der Felder leer ist, werden auch die Pr&auml;fix- und
 Suffix-Formatierungs-Bausteine unterdr&uuml;ckt. Wenn Sie dieses Verhalten vermeiden
 wollen, geben Sie einfach ein Leerzeichen als Titel, Ort bzw. Beschreibung ein.
@@ -197,8 +198,8 @@ $LANG['backend'] = array(
     'TXT_EXTCAL_ENTRY_TEMPLATE'     => "im folgenden Template k&ouml;nnen Sie das"
                                      . " Erscheinungsbild  eines Kalendereintrags"
                                      . " festlegen. M&ouml;gliche Platzhalter sind"
-                                     . " {DATE}, {TITLE}, {LOCATION}, {CATEGORIES}"
-                                     . " und {DESCRIPTION}."
+                                     . " {DATE}, {TITLE}, {LOCATION}, {CATEGORIES},"
+                                     . " {DESCRIPTION} und {CALENDAR}."
                                      . " Anstelle des Datums k&ouml;nnen Sie hier auch"
                                      . " {START_DATE}, {END_DATE}, {START_TIME},"
                                      . " {END_TIME} und {DATE_SEPARATOR} verwenden."
@@ -244,6 +245,10 @@ $LANG['backend'] = array(
                                      . " deaktiviert)",
     'TXT_EXTCAL_KEEP_TODAYS_EVENTS' => "behalte verstrichene Termine bis Mitternacht",
     'TXT_EXTCAL_TIME_OFFSET'        => "Korrektur der Serverzeit in Sekunden",
+    'TXT_EXTCAL_CALENDAR_START'     => "Formatierung um den Namen des Kalenders einzuleiten"
+                                     . " (wird {CALENDAR} vorangestellt)",
+    'TXT_EXTCAL_CALENDAR_END'       => "Formatierung um den Namen des Kalenders abzuschlie&szlig;en"
+                                     . " (wird an  {CALENDAR} angeh&auml;ngt)"
 );
 
 

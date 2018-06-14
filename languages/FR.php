@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.9
+ * @version         1.2.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -47,8 +47,7 @@ La solution la plus simple est de mettre vos fichiers iCal juste dans le dossier
 m&eacute;dias ou dans le r&eacute;pertoire des calendriers de ce module et de les
 g&eacute;rer en utilisant le ftp-url dans votre client. Cependant, cela ne fonctionne que
 pour un seul client se il est assur&eacute; qu'aucun acc&egrave;s simultan&eacute; peut
-arriver. Si vous avez besoin de plusieurs comptes et vous cherchez un serveur WebDAV
-simple, vous voudrez peut-&ecirc;tre essayer Ba&iuml;kal. </P>
+arriver. Si vous avez besoin de plusieurs comptes et vous cherchez un serveur WebDAV, vous voudrez peut-&ecirc;tre essayer Owncloud. </P>
 
 <P> Dans le backend vous pouvez configurer beaucoup de d&eacute;tails sur l'apparence du
 module. La situation centrale est la zone de texte o&ugrave; vous entrez les URL de vos
@@ -126,7 +125,7 @@ g&eacute;n&eacute;r&eacute;. </P>
 d'une valeur qui vient de l'entr&eacute;e et un bloc de mise en forme de pr&eacute;fixe et
 un autre de suffixe. Cela se applique pour le titre de l'entr&eacute;e ({TITLE}),
 l'emplacement ({LOCATION}), la description d&eacute;taill&eacute;e ({DESCRIPTION}),
-et cat&eacute;gories ({CATEGORIES}).
+et cat&eacute;gories ({CATEGORIES}). On peut autant utiliser le nom du calendrier({CALENDAR}).
 
 Si l'un des champs est vide, aussi le bloc de formatage pr&eacute;fixe et le suffixe sont
 supprim&eacute;es. Si vous voulez &eacute;viter cela, il suffit d'entrer un
@@ -210,8 +209,8 @@ $LANG ['backend'] = array(
     'TXT_EXTCAL_ENTRY_TEMPLATE'     => "dans le mod&egrave;le suivant, vous pouvez"
                                      . " configurer l'apparence de chaque entr&eacute;e"
                                      . " de calendrier endroit possible titulaires sont"
-                                     . " {DATE}, {TITLE}, {LOCATION}, {DESCRIPTION} et"
-                                     . " {CATEGORIES}."
+                                     . " {DATE}, {TITLE}, {LOCATION}, {DESCRIPTION},"
+                                     . " {CATEGORIES} et {CALENDAR}."
                                      . " Au lieu de la date vous pouvez &eacute;galement"
                                      . " utilizer {START_DATE}, {END_DATE},"
                                      . " {START_TIME}, {END_TIME} et {DATE_SEPARATOR}"
@@ -258,6 +257,10 @@ $LANG ['backend'] = array(
                                      . " &eacute;coul&eacute;s jusqu'&agrave; minuit",
     'TXT_EXTCAL_TIME_OFFSET'        => "correction de l'heure du serveur en quelques"
                                      . " secondes",
+    'TXT_EXTCAL_CALENDAR_START'     => "mise en forme au d&eacute;but d'un nom d'un calendrier"
+                                     . " (pr&eacute;fix&eacute; &agrave; {CALENDAR})",
+    'TXT_EXTCAL_CALENDAR_END'       => "formatage &agrave; la fin d'un nome d'un calendrier"
+                                     . " (annex&eacute; &agrave; {CALENDAR})"
 
 );
 

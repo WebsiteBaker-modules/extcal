@@ -1,6 +1,9 @@
 
 /*
  *      CHANGELOG
+ *      1.2.0   2018-06-14      - added place holder for the calendar name
+ *      1.1.11  2018-06-13      - updated help pages
+ *      1.1.10  2018-06-12      - updated sabre-dav to 2.1.12
  *      1.1.9   2018-04-12      - correct the behavior for including module css
  *      1.1.8   2017-01-23      - repair upgrade script
  *      1.1.7   2017-01-23      - translate default categories into current frontend language

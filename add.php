@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.9
+ * @version         1.2.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -55,7 +55,9 @@ $query = "INSERT INTO `".TABLE_PREFIX."mod_extcal`"
      . " `midnight_fix` = '1',"
      . " `verify_peer` = '1',"
      . " `keep_todays_events` = '1',"
-     . " `time_offset` = '0'";
+     . " `time_offset` = '0',"
+     . " `calendar_start` = '{DEFAULT}',"
+     . " `calendar_end` = '{DEFAULT}'";
 
 
 $database->query($query);

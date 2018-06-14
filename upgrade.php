@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.9
+ * @version         1.2.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -54,7 +54,9 @@ $MY_DB_FIELDS=array(
     "midnight_fix"              => "INT DEFAULT '1'",
     "verify_peer"               => "INT DEFAULT '1'",
     "keep_todays_events"        => "INT DEFAULT '1'",
-    "time_offset"               => "INT DEFAULT '0'"
+    "time_offset"               => "INT DEFAULT '0'",
+    "calendar_start"            => "TEXT NOT NULL",
+    "calendar_end"              => "TEXT NOT NULL"
 );
 
 
@@ -217,6 +219,8 @@ while( $fetch_content = $get_content->fetchRow() ) {
     $verify_peer = $fetch_content['verify_peer'];
     $keep_todays_events = $fetch_content['keep_todays_events'];
     $time_offset = $fetch_content['time_offset'];
+    $calendar_start = $fetch_content['calendar_start'];
+    $calendar_end = $fetch_content['calendar_end'];
 
 
     // initialize new fields
@@ -268,6 +272,12 @@ while( $fetch_content = $get_content->fetchRow() ) {
 
     if($new_fields["time_offset"]==1)
         $time_offset="0";
+
+    if($new_fields["calendar_end"]==1)
+        $calendar_end="{DEFAULT}";
+
+    if($new_fields["calendar_start"]==1)
+        $calendar_start="{DEFAULT}";
 
     // if entry_template is new tranform empty strings to default settings
     if($TRANSFORM_TO_TEMPLATE) {
@@ -397,6 +407,8 @@ while( $fetch_content = $get_content->fetchRow() ) {
     $date_separator = $admin->add_slashes($date_separator);
     $date_template = $admin->add_slashes($date_template);
     $optimize_date = $admin->add_slashes($optimize_date);
+    $calendar_start = $admin->add_slashes($calendar_start);
+    $calendar_end = $admin->add_slashes($calendar_end);
 
     $query = "UPDATE `".TABLE_PREFIX."mod_extcal`"
         . " SET `cal_urls` = '$cal_urls',"
@@ -422,7 +434,9 @@ while( $fetch_content = $get_content->fetchRow() ) {
         . " `timeformat` = '$timeformat',"
         . " `date_separator` = '$date_separator',"
         . " `date_template` = '$date_template',"
-        . " `optimize_date` = '$optimize_date' "
+        . " `optimize_date` = '$optimize_date',"
+        . " `calendar_start` = '$calendar_start',"
+        . " `calendar_end` = '$calendar_end' "
         . " WHERE `section_id` = '$section_id'";
     $database->query($query);
 

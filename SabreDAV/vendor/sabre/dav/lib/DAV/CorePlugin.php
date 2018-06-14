@@ -9,7 +9,7 @@ use
 /**
  * The core plugin provides all the basic features for a WebDAV server.
  *
- * @copyright Copyright (C) 2007-2014 fruux GmbH. All rights reserved.
+ * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
@@ -619,14 +619,19 @@ class CorePlugin extends ServerPlugin {
         if ($moveInfo['destinationExists']) {
 
             if (!$this->server->emit('beforeUnbind', [$moveInfo['destination']])) return false;
+
+        }
+        if (!$this->server->emit('beforeUnbind',[$path])) return false;
+        if (!$this->server->emit('beforeBind',[$moveInfo['destination']])) return false;
+        if (!$this->server->emit('beforeMove', [$path, $moveInfo['destination']])) return false;
+
+        if ($moveInfo['destinationExists']) {
+
             $this->server->tree->delete($moveInfo['destination']);
             $this->server->emit('afterUnbind', [$moveInfo['destination']]);
 
         }
 
-        if (!$this->server->emit('beforeUnbind', [$path])) return false;
-        if (!$this->server->emit('beforeBind', [$moveInfo['destination']])) return false;
-        if (!$this->server->emit('beforeMove', [$path, $moveInfo['destination']])) return false;
         $this->server->tree->move($path, $moveInfo['destination']);
 
         // Its important afterMove is called before afterUnbind, because it

@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.9
+ * @version         1.2.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -45,8 +45,8 @@ La soluzione pi&ugrave; semplice &egrave; quello di mettere i file iCal solo nel
 cartella multimediale o nella directory calendari di questo modulo e di gestirli
 tramite ftp-url del vostro software cliente. Tuttavia, questo funziona solo per
 un singolo cliente qualora sia garantito che nessun accesso simultaneo pu&ograve;
-accadere. Se avete bisogno di pi&ugrave; account e siete alla ricerca di un semplice
-server WebDAV si potrebbe desiderare di provare Ba&iuml;kal. </P>
+accadere. Se avete bisogno di pi&ugrave; account e siete alla ricerca di un
+server WebDAV si potrebbe desiderare di provare Owncloud. </P>
 
 <P> Nel backend del modulo &egrave; possibile configurare un sacco di dettagli circa
 l'aspetto del modulo. La posizione centrale &egrave; la casella di testo dove inserire
@@ -110,7 +110,7 @@ un blocco formattazione inizio e una di fine. Ecco come il {DATE} blocco viene g
 <P> Gli altri segnaposto sono pi&ugrave; semplici. Essi consistono essenzialmente di un
 valore che viene dal appuntamento e un blocco formattazione prefisso e un blocco
 formattazione suffisso. Questo vale per il titolo del appuntamento ({TITLE}), la
-posizione ({LOCATION}), la descrizione dettagliata ({DESCRIPTION}) e categorie ({CATEGORIES}).
+posizione ({LOCATION}), la descrizione dettagliata ({DESCRIPTION}) e categorie ({CATEGORIES}). E anche possibile utilizzare il nome del calendario {CALENDAR} dentro un appuntamento.
 
 Se uno dei campi &egrave; vuoto, anche il blocco formattazione prefisso e suffisso
 vengono soppressi. Se si vuole evitare questo, basta inserire uno spazio nel titolo, la
@@ -184,8 +184,8 @@ $LANG ['backend'] = array(
     'TXT_EXTCAL_ENTRY_TEMPLATE'     => "nel modello seguente &egrave; possibile"
                                      . " impostare l'aspetto di ogni voce del calendario"
                                      . " possibile segnaposto sono {DATE}, {TITLE},"
-                                     . " {LOCATION}, {DESCRIPTION} et {CATEGORIES}."
-                                     . " Invece de la data"
+                                     . " {LOCATION}, {DESCRIPTION}, {CATEGORIES} et"
+                                     . " {CALENDAR}. Invece de la data"
                                      . " &egrave; anche possibile utilizzare"
                                      . " {START_DATE}, {END_DATE}, {START_TIME},"
                                      . " {END_TIME} e {DATE_SEPARATOR} qui. L'apertura e"
@@ -224,7 +224,10 @@ $LANG ['backend'] = array(
     'TXT_EXTCAL_KEEP_TODAYS_EVENTS' => "mantenere gli appuntamenti trascorsi fino a"
                                      . " mezzanotte",
     'TXT_EXTCAL_TIME_OFFSET'        => "correzione del tempo del server in secondi",
-
+    'TXT_EXTCAL_CALENDAR_START'     => "formattazione all'inizio di un nome del calendario"
+                                     . " (anteposta a {CALENDAR})",
+    'TXT_EXTCAL_CALENDAR_END'       => "formattazione alla fine di un nome del calendario"
+                                     . " (allegato a {CALENDAR})"
 );
 
 

@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.1.9
+ * @version         1.2.0
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
@@ -154,7 +154,7 @@ if((strpos($fURI,'https')===0)&&(!$verify_peer))
 $rc = copy( $fURI, $target_file, stream_context_create($arrRequestHeaders) );
 
 // HTTP request completed, preserve system error, if any
-if( $rc ) {
+if( is_bool($rc) == FALSE ) {
     if ( fclose( $rc ) ) {
     unset( $err );
     }
