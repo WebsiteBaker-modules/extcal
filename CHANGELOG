@@ -1,6 +1,8 @@
 
 /*
  *      CHANGELOG
+ *      1.2.2   2018-11-05      - alignment in the backend optimized for large screens
+ *      1.2.1   2018-10-19      - avoid double index access on message entries
  *      1.2.0   2018-06-14      - added place holder for the calendar name
  *      1.1.11  2018-06-13      - updated help pages
  *      1.1.10  2018-06-12      - updated sabre-dav to 2.1.12

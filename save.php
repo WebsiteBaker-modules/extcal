@@ -3,11 +3,12 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.2.0
+ * @version         1.2.2
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
- * @link            http://forum.websitebaker.org/index.php/topic,28493.0.html
  * @link            https://github.com/WebsiteBaker-modules/extcal
+ * @link            https://forum.wbce.org/viewtopic.php?id=18536
+ * @link            https://forum.websitebaker.org/index.php/topic,30975.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
  * @requirements    PHP 5.3 and higher and Curl
@@ -133,7 +134,7 @@ if(isset($_POST['cal_urls'])) {
 if($database->is_error()) {
     $admin->print_error($database->get_error(), $js_back);
 } else {
-    $admin->print_success($MESSAGE['PAGES']['SAVED'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
+    $admin->print_success($MESSAGE['PAGES_SAVED'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 }
 }
 

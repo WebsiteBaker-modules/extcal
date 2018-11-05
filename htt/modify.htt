@@ -25,186 +25,186 @@
 </tr>
 
 <tr>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_MAX_DAYS}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="max_days" value="{MOD_EXTCAL_MAX_DAYS}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_MAX_ENTRIES}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="max_entries" value="{MOD_EXTCAL_MAX_ENTRIES}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_TIME_ZONE}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="time_zone" value="{MOD_EXTCAL_TIME_ZONE}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 
 <tr{DISPLAY_ADVANCED}>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_TIME_OFFSET}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="time_offset" value="{MOD_EXTCAL_TIME_OFFSET}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 
 <tr>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_DATEFORMAT}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="dateformat" value="{MOD_EXTCAL_DATEFORMAT}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_TIMEFORMAT}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="timeformat" value="{MOD_EXTCAL_TIMEFORMAT}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr{DISPLAY_ADVANCED}>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_DATE_SEPARATOR}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="date_separator" value="{MOD_EXTCAL_DATE_SEPARATOR}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_SECTION_START}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="section_start" value="{MOD_EXTCAL_SECTION_START}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_SECTION_END}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="section_end" value="{MOD_EXTCAL_SECTION_END}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 
 <tr{DISPLAY_ADVANCED}>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_DATE_START}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="date_start" value="{MOD_EXTCAL_DATE_START}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr{DISPLAY_ADVANCED}>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_DATE_END}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="date_end" value="{MOD_EXTCAL_DATE_END}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 
 <tr{DISPLAY_ADVANCED}>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_LOCATION_START}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="location_start" value="{MOD_EXTCAL_LOCATION_START}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr{DISPLAY_ADVANCED}>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_LOCATION_END}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="location_end" value="{MOD_EXTCAL_LOCATION_END}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr{DISPLAY_ADVANCED}>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_TITLE_START}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="title_start" value="{MOD_EXTCAL_TITLE_START}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr{DISPLAY_ADVANCED}>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_TITLE_END}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="title_end" value="{MOD_EXTCAL_TITLE_END}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_CONFIDENTIAL_TEXT}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="confidential_text" value="{MOD_EXTCAL_CONFIDENTIAL_TEXT}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr{DISPLAY_ADVANCED}>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_DESCRIPTION_START}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="description_start" value="{MOD_EXTCAL_DESCRIPTION_START}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr{DISPLAY_ADVANCED}>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_DESCRIPTION_END}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="description_end" value="{MOD_EXTCAL_DESCRIPTION_END}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 
 <tr{DISPLAY_ADVANCED}>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_CALENDAR_START}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="calendar_start" value="{MOD_EXTCAL_CALENDAR_START}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr{DISPLAY_ADVANCED}>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_CALENDAR_END}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="calendar_end" value="{MOD_EXTCAL_CALENDAR_END}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
@@ -237,29 +237,29 @@
 </tr>
 
 <tr>
-        <td align="left">
+        <td align="right">
                {TXT_EXTCAL_ENABLE_CACHE}
                <input type="checkbox" name="enable_cache" value="enable_cache" {MOD_EXTCAL_ENABLE_CACHE}>
         </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
            </td>
 
 </tr>
 
 <tr>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_REFRESH_TIME}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="refresh_time" value="{MOD_EXTCAL_REFRESH_TIME}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>
 
 <tr>
-    <td align="left">
+    <td align="right">
         {TXT_EXTCAL_CACHE_TIME}:
     </td>
-    <td style="text-align: right;">
+    <td style="text-align: left;">
         <input type="text" name="cache_time" value="{MOD_EXTCAL_CACHE_TIME}" style="width: 200px; margin-top: 5px;" />
     </td>
 </tr>

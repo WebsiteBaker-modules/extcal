@@ -12,7 +12,7 @@ X-MOZ-LASTACK:20150213T065819Z
 DTSTART;VALUE=DATE:20150201
 DTEND;VALUE=DATE:20150202
 TRANSP:TRANSPARENT
-LOCATION:http://forum.websitebaker.org/index.php/topic,28493.0.html
+LOCATION:https://github.com/WebsiteBaker-modules/extcal
 DESCRIPTION:this is an example calendar entry which appears every month an
  d reminds you to check if there are any updates for your WebsiteBaker inst
  allation and the modules you are using
