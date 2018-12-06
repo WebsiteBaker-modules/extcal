@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.2.2
+ * @version         1.2.3
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            https://github.com/WebsiteBaker-modules/extcal
@@ -15,8 +15,29 @@
  *
  **/
 
+
+/* -------------------------------------------------------- */
+// Must include code to stop this file being accessed directly
+if(!defined('WB_PATH')) {
+        // Stop this file being access directly
+        if(!headers_sent()) header("Location: ../index.php",TRUE,301);
+        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
+}
+/* -------------------------------------------------------- */
+
+
+$module_directory      = 'extcal';
+$module_name           = 'External Calendar';
+$module_function       = 'page';
+$module_version        = '1.2.3';
+$module_platform       = 'WebsiteBaker 2.8.x';
+$module_author         = 'Martin Hecht';
+$module_license        = 'GNU General Public License';
+$module_description    = 'The module External Calendar allows you to include external calendars (DavCAL or ics) into a WebsiteBaker page.';
+
 /*
  *      CHANGELOG
+ *      1.2.3   2018-12-06      - add backend.css and move changelog downwards
  *      1.2.2   2018-11-05      - alignment in the backend optimized for large screens
  *      1.2.1   2018-10-19      - avoid double index access on message entries
  *      1.2.0   2018-06-14      - added place holder for the calendar name
@@ -107,26 +128,4 @@
  *      0.0.1   2015-01-27      - first version of this module (Martin Hecht)
  *
  */
-
-
-/* -------------------------------------------------------- */
-// Must include code to stop this file being accessed directly
-if(!defined('WB_PATH')) {
-        // Stop this file being access directly
-        if(!headers_sent()) header("Location: ../index.php",TRUE,301);
-        die('<head><title>Access denied</title></head><body><h2 style="color:red;margin:3em auto;text-align:center;">Cannot access this file directly</h2></body></html>');
-}
-/* -------------------------------------------------------- */
-
-
-$module_directory      = 'extcal';
-$module_name           = 'External Calendar';
-$module_function       = 'page';
-$module_version        = '1.2.2';
-$module_platform       = 'WebsiteBaker 2.8.x';
-$module_author         = 'Martin Hecht';
-$module_license        = 'GNU General Public License';
-$module_description    = 'The module External Calendar allows you to include external calendars (DavCAL or ics) into a WebsiteBaker page.';
-
-
 

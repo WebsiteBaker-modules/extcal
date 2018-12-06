@@ -1,0 +1,23 @@
+/* padding */
+form.extcal, .extcal textarea, .extcal input {padding: 5px;}
+
+/* input width */
+.extcal input {min-width: 200px;}
+
+/* zebra tr's */
+.extcal tr:nth-child(even),
+.extcal tr:nth-child(23) td:nth-child(1) p:nth-child(2) /* before second textarea */
+{
+    background: #eee
+}
+
+/* kill zebra */
+.extcal tr:nth-child(2),   /* before first textarea */
+.extcal tr:nth-child(28),  /* save, delete */
+.extcal tr:last-child      /* empty cache */
+{
+    background: none
+}
+
+/* left td's */
+.extcal tr td:first-child {width: 65%}
