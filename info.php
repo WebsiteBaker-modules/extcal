@@ -3,7 +3,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.2.3
+ * @version         1.2.4
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            https://github.com/WebsiteBaker-modules/extcal
@@ -29,7 +29,7 @@ if(!defined('WB_PATH')) {
 $module_directory      = 'extcal';
 $module_name           = 'External Calendar';
 $module_function       = 'page';
-$module_version        = '1.2.3';
+$module_version        = '1.2.4';
 $module_platform       = 'WebsiteBaker 2.8.x';
 $module_author         = 'Martin Hecht';
 $module_license        = 'GNU General Public License';
@@ -37,6 +37,7 @@ $module_description    = 'The module External Calendar allows you to include ext
 
 /*
  *      CHANGELOG
+ *      1.2.4   2018-12-09      - update modify.htt to pick up styles from backend.css
  *      1.2.3   2018-12-06      - add backend.css and move changelog downwards
  *      1.2.2   2018-11-05      - alignment in the backend optimized for large screens
  *      1.2.1   2018-10-19      - avoid double index access on message entries

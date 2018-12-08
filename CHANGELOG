@@ -1,6 +1,7 @@
 
 /*
  *      CHANGELOG
+ *      1.2.4   2018-12-09      - update modify.htt to pick up styles from backend.css
  *      1.2.3   2018-12-06      - add backend.css and move changelog downwards
  *      1.2.2   2018-11-05      - alignment in the backend optimized for large screens
  *      1.2.1   2018-10-19      - avoid double index access on message entries

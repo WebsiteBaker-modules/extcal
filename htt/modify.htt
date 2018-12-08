@@ -1,6 +1,6 @@
 <!-- BEGIN main_block -->
 
-<form action="{WB_URL}/modules/extcal/save.php" method="post">
+<form class="extcal" action="{WB_URL}/modules/extcal/save.php" method="post">
 <input type="hidden" name="advanced" value="{ADVANCED}" />
 <input type="hidden" name="section_id" value="{SECTION_ID}" />
 <input type="hidden" name="page_id" value="{PAGE_ID}" />

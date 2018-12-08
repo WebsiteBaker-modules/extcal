@@ -4,7 +4,7 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.2.3
+ * @version         1.2.4
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            https://github.com/WebsiteBaker-modules/extcal
