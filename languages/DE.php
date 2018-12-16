@@ -3,12 +3,10 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.2.4
+ * @version         1.2.6
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            https://github.com/WebsiteBaker-modules/extcal
- * @link            https://forum.wbce.org/viewtopic.php?id=18536
- * @link            https://forum.websitebaker.org/index.php/topic,30975.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
  * @requirements    PHP 5.3 and higher and Curl
@@ -31,6 +29,8 @@ $module_description = "
 Das Modul External Calendar erm&ouml;glicht es, externe Kalender (DavCal oder ics) in eine
 WebsiteBaker-Seite einzubinden. </p>
 
+<h3>Allgemeine Einstellungen</h3>
+
 <p>Die Kalender werden mit &uuml;blichen Kalender-Programmen wie Outlook, Thunderbird
 Lightning o.&auml;., oder mittels Web-Oberfl&auml;che eines WebSpace-Anbieters verwaltet
 und mit diesem Modul einfach in die Pr&auml;senz eingebunden. Dabei geht es nicht um eine
@@ -49,6 +49,7 @@ verwalten. Das funktioniert allerdings nur, solange ausschlie&szlig;lich ein ein
 Client eingesetzt wird und sichergestellt ist, dass keine konkurrierenden Zugriffe
 stattfinden. Wenn Sie mehrere Accounts brauchen und einen WebDAV server suchen,
 k&ouml;nnte eventuell Owncloud etwas f&uuml;r Sie sein.</p>
+
 
 <p> Im Backend lassen sich viele Details zur Darstellung einstellen. Die zentrale
 Einstellung ist das Feld, in dem die URLs der Kalender eingegeben werden. Wird f&uuml;r
@@ -79,6 +80,8 @@ Offset in Sekunden angeben, der grunds&auml;tzlich auf die aktuelle Serverzeit a
 wird, bevor sie mit einem Kalendereintrag verglichen wird.
 </p>
 
+<h3>Datums- und Zeitformat</h3>
+
 <p>Die Zeitzone, mit der die Zeiten in den Kalendern interpretiert werden sollen, kann
 ebenfalls im Backend eingestellt werden. Dies ist insbesondere f&uuml;r die korrekte
 Darstellung von Terminen &uuml;ber die Umstellung zwischen Sommer- und Winterzeit hinweg.
@@ -89,6 +92,8 @@ globalen Spracheinstellung in WebsiteBaker zu ermitteln (das sollte derzeit f&uu
 Deutschland, England, Frankreich und Italien funktionieren). Um ein beliebiges Feld auf
 die Default-Einstellungen zur&uuml;ckzusetzen, k&ouml;nnen Sie einfach
 &quot;{DEFAULT}&quot; eingeben und die Enistellungen speichern.</p>
+
+<h3>Ausgabeformatierung</h3>
 
 <p>Die gesamte Formatierung der einzelnen Termine wird&uuml;ber Templates und
 Formatierungsbausteine gesteuert.
@@ -135,12 +140,15 @@ Style Definitionen zur Verwendung in den Formatierungsbausteinen k&ouml;nnen Sie
 Backend heraus im Frontend Style file dieses Moduls definieren.
 </p>
 
+<h3>Diverse Einstellungen</h3>
+
 <p>Das Modul ber&uuml;cksichtigt die Privatsph&auml;reneinstellungen der
 Kalendereintr&auml;ge. Private Eintr&auml;ge werden nicht angezeigt, w&auml;hrend als
 vertraulich markierte Eintr&auml;ge nur mit Datum und ohne Beschreibung angezeigt werden.
 Anstelle des Titels wird ein fest vorgegebener Textbaustein angezeigt, der im Backend
 konfiguriert werden kann. </p>
 
+<h3>Cache Einstellungen</h3>
 
 <p>Schlie&szlig;lich enth&auml;lt das Modul auch einen konfigurierbaren internen Cache,
 der &uuml;ber eine weitere Checkbox aktiviert werden kann. Dabei gibt es zwei
@@ -249,7 +257,13 @@ $LANG['backend'] = array(
     'TXT_EXTCAL_CALENDAR_START'     => "Formatierung um den Namen des Kalenders einzuleiten"
                                      . " (wird {CALENDAR} vorangestellt)",
     'TXT_EXTCAL_CALENDAR_END'       => "Formatierung um den Namen des Kalenders abzuschlie&szlig;en"
-                                     . " (wird an  {CALENDAR} angeh&auml;ngt)"
+                                     . " (wird an  {CALENDAR} angeh&auml;ngt)",
+    'TXT_EXTCAL_GENERAL_SETTINGS'   => "Allgemeine Einstellungen",
+    'TXT_EXTCAL_DATE_FORMAT_SETTINGS' => "Datums- und Zeitformat",
+    'TXT_EXTCAL_FORMAT_SETTINGS'    => "Ausgabeformatierung",
+    'TXT_EXTCAL_DIVERSE_SETTINGS'   => "Diverse Einstellungen",
+    'TXT_EXTCAL_CACHE_SETTINGS'     => "Cache Einstellungen"
+
 );
 
 

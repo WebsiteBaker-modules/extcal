@@ -3,12 +3,10 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.2.4
+ * @version         1.2.6
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            https://github.com/WebsiteBaker-modules/extcal
- * @link            https://forum.wbce.org/viewtopic.php?id=18536
- * @link            https://forum.websitebaker.org/index.php/topic,30975.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
  * @requirements    PHP 5.3 and higher and Curl
@@ -26,6 +24,8 @@ $module_description = "
 <p>
 The module External Calendar allows you to include external calendars (DavCAL or ics) into a WebsiteBaker page.
 </p>
+
+<h3>General Settings</h3>
 
 <p>The calendars are managed my means of usual calendar programs like Outlook,
 Thunderbird Lightning and similar, or by means of a web-interface of a WebSpace-provider.
@@ -68,6 +68,8 @@ disappear. You can also adjust an offset in seconds, which is applied to the cur
 server time before comparing it to any calendar entry.
 </p>
 
+<h3>Date and Time Format</h3>
+
 <p>The timezone based on which the dates in the calenders are interpreted, can be
 configured in the backend, too. This is especially important for a correct handling of
 appointments across daylight-savings. Choose the correct timezone for your country. Do
@@ -76,6 +78,8 @@ of any daylight savings. You can also leave the field empty, then the module tri
 determine the time zone from the language global settings of WebsiteBaker (this should
 work for Germany, England, France and Italy, currently). To reset any of the fields, just
 enter &quot;{DEFAULT}&quot; and save the settings.</p>
+
+<h3>Output Formatting</h3>
 
 <p>The whole formatting of the appointments is controlled by templates and formatting
 blocks. Note that some of these settings are hidden in the advanced settings.
@@ -112,11 +116,14 @@ formatting blocks for the whole section: One for the begin of the whole
 the section. In order to add some style definitions for use in these formatting blocks you
 can add them to the frontend style file of this module directly out of the backend. </p>
 
+<h3>Miscellaneous Settings</h3>
+
 <p>The module takes care about the privacy settings of the calendar entries. Appointments
 marked as private are not displayed at all, whereas confidential appointments are shown
 with the date only, but without any description. Instead of the title, a fixed text block
 which can be configured in the backend, is displayed for confidential entries. </p>
 
+<h3>Cache Settings</h3>
 
 <p>Finally, the module contains a configurable internal cache, which can be activated with
 another checkbox. There are two flavors of the cache: There is a short time cache, which
@@ -214,7 +221,13 @@ $LANG['backend'] = array(
     'TXT_EXTCAL_CALENDAR_START'     => "formatting at the beginning of a calendar name"
                                      . " (prepended to {CALENDAR})",
     'TXT_EXTCAL_CALENDAR_END'       => "formatting at the end of a calendar name"
-                                     . " (appended to {CALENDAR})"
+                                     . " (appended to {CALENDAR})",
+    'TXT_EXTCAL_GENERAL_SETTINGS'   => "General Settings",
+    'TXT_EXTCAL_DATE_FORMAT_SETTINGS' => "Date and Time Format",
+    'TXT_EXTCAL_FORMAT_SETTINGS'    => "Output Formatting",
+    'TXT_EXTCAL_DIVERSE_SETTINGS'   => "Miscellaneous Settings",
+    'TXT_EXTCAL_CACHE_SETTINGS'     => "Cache Settings"
+
 );
 
 $LANG['frontend'] = array(

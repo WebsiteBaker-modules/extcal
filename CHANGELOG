@@ -1,6 +1,8 @@
 
 /*
  *      CHANGELOG
+ *      1.2.6   2018-12-16      - add headlines to groups of backend settings
+ *      1.2.5   2018-12-14      - restore alignment of cells now that we have css
  *      1.2.4   2018-12-09      - update modify.htt to pick up styles from backend.css
  *      1.2.3   2018-12-06      - add backend.css and move changelog downwards
  *      1.2.2   2018-11-05      - alignment in the backend optimized for large screens

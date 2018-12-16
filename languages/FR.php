@@ -3,12 +3,10 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.2.4
+ * @version         1.2.6
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            https://github.com/WebsiteBaker-modules/extcal
- * @link            https://forum.wbce.org/viewtopic.php?id=18536
- * @link            https://forum.websitebaker.org/index.php/topic,30975.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
  * @requirements    PHP 5.3 and higher and Curl
@@ -32,6 +30,8 @@ Le module External Calendar vous permet a impliquer calendriers externe (ics ou 
 dans une page WebsiteBaker.
 </p>
 
+<h3>Param&egrave;tres g&eacute;n&eacute;raux</h3>
+
 <P> Les calendriers sont maintenu moyens des programmes comme Outlook, Thunderbird
 Lightning et similaire, ou au moyen d'une interface web d'un WebSpace fournisseur.
 
@@ -48,7 +48,8 @@ La solution la plus simple est de mettre vos fichiers iCal juste dans le dossier
 m&eacute;dias ou dans le r&eacute;pertoire des calendriers de ce module et de les
 g&eacute;rer en utilisant le ftp-url dans votre client. Cependant, cela ne fonctionne que
 pour un seul client se il est assur&eacute; qu'aucun acc&egrave;s simultan&eacute; peut
-arriver. Si vous avez besoin de plusieurs comptes et vous cherchez un serveur WebDAV, vous voudrez peut-&ecirc;tre essayer Owncloud. </P>
+arriver. Si vous avez besoin de plusieurs comptes et vous cherchez un serveur WebDAV,
+vous voudrez peut-&ecirc;tre essayer Owncloud. </P>
 
 <P> Dans le backend vous pouvez configurer beaucoup de d&eacute;tails sur l'apparence du
 module. La situation centrale est la zone de texte o&ugrave; vous entrez les URL de vos
@@ -84,6 +85,8 @@ Vous pouvez &eacute;galement r&eacute;gler un d&eacute;calage en secondes, qui e
 appliqu&eacute;e &agrave; l'heure actuelle du serveur avant de le comparer &agrave;
 une entr&eacute;e de calendrier.</P>
 
+<h3>Format de date et heure</h3>
+
 <P> Le fuseau horaire sur la base duquel les dates dans les calandres sont
 interpr&eacute;t&eacute;s, peut &ecirc;tre configur&eacute; dans le backend, aussi. Ceci est
 particuli&egrave;rement important pour une manipulation correcte des rendez-vous entre la
@@ -91,11 +94,13 @@ lumi&egrave;re du jour-&eacute;pargne. Choisissez le fuseau horaire correspondan
 votre pays. Ne pas utiliser quelque chose comme &quot; UTC + X heures &quot ;, de car ce
 param&egrave;tre ne serait pas au courant de l'heure d'&eacute;t&eacute;.
 
- Vous pouvez &eacute;galement laisser le champ vide, alors le module tente de
- d&eacute;terminer le fuseau horaire dans les param&egrave;tres globaux linguistiques de
- WebsiteBaker (cela devrait fonctionner pour l'Allemagne, l'Angleterre, la France et
- l'Italie, actuellement). Pour r&eacute;initialiser l'un des champs, il suffit d'entrer
- &quot; {DEFAULT} &quot; et enregistrer les r&eacute;glages. </P>
+Vous pouvez &eacute;galement laisser le champ vide, alors le module tente de
+d&eacute;terminer le fuseau horaire dans les param&egrave;tres globaux linguistiques de
+WebsiteBaker (cela devrait fonctionner pour l'Allemagne, l'Angleterre, la France et
+l'Italie, actuellement). Pour r&eacute;initialiser l'un des champs, il suffit d'entrer
+&quot; {DEFAULT} &quot; et enregistrer les r&eacute;glages. </P>
+
+<h3>Formatage de la sortie</h3>
 
 <P> Tout le formatage des nominations est contr&ocirc;l&eacute;e par des mod&egrave;les
 et des blocs de mise en forme.
@@ -140,12 +145,16 @@ ici), et un pour la fin de la section. Afind d'ajouter des d&eacute;finitions de
 pour l'utilisaton dans ces blocs de mise en forme, vous pouvez les ajouter &agrave; la
 feuille de style frontend de ce module directement sur le backend.</P>
 
+<h3>Param&egrave;tres divers</h3>
+
 <P> Le module prend en charge sur les param&egrave;tres des entr&eacute;es d'agenda de la
 vie priv&eacute;e. Nominations marqu&eacute;s comme priv&eacute; ne sont pas affich&eacute;s
 du tout, alors rendez-vous confidentiels sont affich&eacute;s avec la date seulement, mais
 sans aucune description. Au lieu de le titre, un bloc fixe de texte qui peut &ecirc;tre
 configur&eacute; dans le backend, est affich&eacute; pour les entr&eacute;es
 confidentielles. </P>
+
+<h3>Param&egrave;tres du cache</h3>
 
 <P> Enfin, le module comporte une cache interne configurable, qui peut &ecirc;tre
 activ&eacute; avec une autre case. Il y a deux saveurs de la cache: Il y a un cache de
@@ -261,7 +270,13 @@ $LANG ['backend'] = array(
     'TXT_EXTCAL_CALENDAR_START'     => "mise en forme au d&eacute;but d'un nom d'un calendrier"
                                      . " (pr&eacute;fix&eacute; &agrave; {CALENDAR})",
     'TXT_EXTCAL_CALENDAR_END'       => "formatage &agrave; la fin d'un nome d'un calendrier"
-                                     . " (annex&eacute; &agrave; {CALENDAR})"
+                                     . " (annex&eacute; &agrave; {CALENDAR})",
+    'TXT_EXTCAL_GENERAL_SETTINGS'   => "Param&egrave;tres g&eacute;n&eacute;raux",
+    'TXT_EXTCAL_DATE_FORMAT_SETTINGS' => "Format de date et heure",
+    'TXT_EXTCAL_FORMAT_SETTINGS'    => "Formatage de la sortie",
+    'TXT_EXTCAL_DIVERSE_SETTINGS'   => "Param&egrave;tres divers",
+    'TXT_EXTCAL_CACHE_SETTINGS'     => "Param&egrave;tres du cache"
+
 
 );
 

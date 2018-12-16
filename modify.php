@@ -3,12 +3,10 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.2.4
+ * @version         1.2.6
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            https://github.com/WebsiteBaker-modules/extcal
- * @link            https://forum.wbce.org/viewtopic.php?id=18536
- * @link            https://forum.websitebaker.org/index.php/topic,30975.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
  * @requirements    PHP 5.3 and higher and Curl
@@ -249,6 +247,11 @@ $template->set_var(
         'TXT_EXTCAL_TIME_OFFSET'        => $LANG['backend']['TXT_EXTCAL_TIME_OFFSET'],
         'TXT_EXTCAL_CALENDAR_START'     => $LANG['backend']['TXT_EXTCAL_CALENDAR_START'],
         'TXT_EXTCAL_CALENDAR_END'       => $LANG['backend']['TXT_EXTCAL_CALENDAR_END'],
+        'TXT_EXTCAL_GENERAL_SETTINGS'   => $LANG['backend']['TXT_EXTCAL_GENERAL_SETTINGS'],
+        'TXT_EXTCAL_DATE_FORMAT_SETTINGS' => $LANG['backend']['TXT_EXTCAL_DATE_FORMAT_SETTINGS'],
+        'TXT_EXTCAL_FORMAT_SETTINGS'    => $LANG['backend']['TXT_EXTCAL_FORMAT_SETTINGS'],
+        'TXT_EXTCAL_DIVERSE_SETTINGS'   => $LANG['backend']['TXT_EXTCAL_DIVERSE_SETTINGS'],
+        'TXT_EXTCAL_CACHE_SETTINGS'     => $LANG['backend']['TXT_EXTCAL_CACHE_SETTINGS'],
         'DISPLAY_ADVANCED'              => $display_advanced,
         'ADVANCED'                      => $advanced,
         'ADVANCED_BUTTON'               => $advanced_button,
@@ -292,7 +295,7 @@ $template->set_var(
 );
 
 
-echo "<p>".$LANG['backend']['TXT_EXTCAL_SETTINGS']."</p>\n";
+echo "<h2>Extcal</h2><p>".$LANG['backend']['TXT_EXTCAL_SETTINGS']."</p>\n";
 
 
 // include core functions of WB 2.7 to edit the optional module CSS files (frontend.css)

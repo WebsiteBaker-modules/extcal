@@ -3,12 +3,10 @@
  *
  * @category        page
  * @package         External Calendar
- * @version         1.2.4
+ * @version         1.2.6
  * @authors         Martin Hecht
  * @copyright       (c) 2015 - 2018, Martin Hecht (mrbaseman)
  * @link            https://github.com/WebsiteBaker-modules/extcal
- * @link            https://forum.wbce.org/viewtopic.php?id=18536
- * @link            https://forum.websitebaker.org/index.php/topic,30975.0.html
  * @license         GNU General Public License
  * @platform        WebsiteBaker 2.8.x
  * @requirements    PHP 5.3 and higher and Curl
@@ -30,6 +28,8 @@ $module_description = "
 Il External Calendar modulo permette di includere calendari esterni (DavCAL o ics)
 in una pagina WebsiteBaker
 </P>
+
+<h3>Impostazioni generali</h3>
 
 <P> Il calendario viene gestito usando normali programmi di calendario come Outlook,
 Thunderbird Lightning e simili, o per mezzo di un interfaccia web di uno spazio
@@ -75,6 +75,8 @@ possibile specificare se le date trascorsi devono essere indicate fino a mezzano
 di scomparire. &Egrave; inoltre possibile regolare un offset in secondi, che si applica
 per l'ora del server corrente prima di copararlo contro gli appuntamenti.</P>
 
+<h3>Formato dada e ora</h3>
+
 <P> Il fuso orario in base al quale vengono interpretate le date nei
 calendari, pu&ograve; essere configurato nel backend, anche. Ci&ograve; &egrave;
 particolarmente importante per una corretta gestione di appuntamenti in tutta ora legale.
@@ -87,6 +89,8 @@ fuso orario dalle impostazioni globali linguistiche di WebsiteBaker (questo dovr
 funzionare per la Germania, l'Inghilterra, la Francia e l'Italia, attualmente). Per
 ripristinare uno dei campi, basta inserire &quot;{DEFAULT}&quot; e salvare le
 impostazioni. </P>
+
+<h3>Formattazione di output</h3>
 
 <P> L'intera formattazione delle nomine &egrave; controllata da modelli e blocchi di
 formattazione.
@@ -111,7 +115,8 @@ un blocco formattazione inizio e una di fine. Ecco come il {DATE} blocco viene g
 <P> Gli altri segnaposto sono pi&ugrave; semplici. Essi consistono essenzialmente di un
 valore che viene dal appuntamento e un blocco formattazione prefisso e un blocco
 formattazione suffisso. Questo vale per il titolo del appuntamento ({TITLE}), la
-posizione ({LOCATION}), la descrizione dettagliata ({DESCRIPTION}) e categorie ({CATEGORIES}). E anche possibile utilizzare il nome del calendario {CALENDAR} dentro un appuntamento.
+posizione ({LOCATION}), la descrizione dettagliata ({DESCRIPTION}) e categorie ({CATEGORIES}).
+E anche possibile utilizzare il nome del calendario {CALENDAR} dentro un appuntamento.
 
 Se uno dei campi &egrave; vuoto, anche il blocco formattazione prefisso e suffisso
 vengono soppressi. Se si vuole evitare questo, basta inserire uno spazio nel titolo, la
@@ -125,12 +130,15 @@ uno per la fine della sezione. Per aggiungere definizioni de stile per l'uso in 
 blocchi di formattatzione &egrave; possibile aggiungerli al file stile frontend di
 questo modulo direttamente dal backend.</P>
 
+<h3>Impostazioni varie</h3>
+
 <P> Il modulo si occupa circa le impostazioni di privacy delle voci di calendario.
 Appuntamenti contrassegnati come privati non vengono visualizzati affatto, mentre gli
 appuntamenti riservati vengono visualizzati con solo la data, ma senza alcuna
 descrizione. Al posto del titolo, un blocco di testo fisso che pu&ograve; essere
 configurata nel backend, viene visualizzato per le iscrizioni riservate. </P>
 
+<h3>Impostazioni cache</h3>
 
 <P> Infine, il modulo contiene una cache interna configurabile, che pu&ograve; essere
 attivato con un'altra casella. Ci sono due tipi di cache: C'&egrave; una cache di tempo
@@ -228,7 +236,12 @@ $LANG ['backend'] = array(
     'TXT_EXTCAL_CALENDAR_START'     => "formattazione all'inizio di un nome del calendario"
                                      . " (anteposta a {CALENDAR})",
     'TXT_EXTCAL_CALENDAR_END'       => "formattazione alla fine di un nome del calendario"
-                                     . " (allegato a {CALENDAR})"
+                                     . " (allegato a {CALENDAR})",
+    'TXT_EXTCAL_GENERAL_SETTINGS'   => "Impostazioni generali",
+    'TXT_EXTCAL_DATE_FORMAT_SETTINGS' => "Formato dada e ora",
+    'TXT_EXTCAL_FORMAT_SETTINGS'    => "Formattazione di output",
+    'TXT_EXTCAL_DIVERSE_SETTINGS'   => "Impostazioni varie",
+    'TXT_EXTCAL_CACHE_SETTINGS'     => "Impostazioni cache"
 );
 
 

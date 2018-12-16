@@ -1,19 +1,22 @@
 /* padding */
 form.extcal, .extcal textarea, .extcal input {padding: 5px;}
 
+.extcal textarea { width: 100%; height: 100px }
+
 /* input width */
-.extcal input {min-width: 200px;}
+.extcal input { min-width: 200px; max-width: 30%; margin-top: 5px;}
 
 /* zebra tr's */
-.extcal tr:nth-child(even),
-.extcal tr:nth-child(23) td:nth-child(1) p:nth-child(2) /* before second textarea */
+.extcal tr:nth-child(even)
 {
     background: #eee
 }
 
 /* kill zebra */
 .extcal tr:nth-child(2),   /* before first textarea */
-.extcal tr:nth-child(28),  /* save, delete */
+.extcal tr:nth-child(24),  /* misc settings headline */
+.extcal tr:nth-child(28),  /* third textarea */
+.extcal tr:nth-child(32),  /* save, delete */
 .extcal tr:last-child      /* empty cache */
 {
     background: none
@@ -21,3 +24,4 @@ form.extcal, .extcal textarea, .extcal input {padding: 5px;}
 
 /* left td's */
 .extcal tr td:first-child {width: 65%}
+
